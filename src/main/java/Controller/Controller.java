@@ -27,11 +27,17 @@ public class Controller extends HttpServlet {
         if(page.equalsIgnoreCase("index")){
             List<Product> pl = null;
             pl = new DataService().featureProduct();
-            out.print("too");
+            out.print("too <br/>");
             HttpSession sess = request.getSession();
             sess.setAttribute("productlist",pl);
+            HttpSession ses = request.getSession();
+            ses.setAttribute("plcheck","plcheck");
+            for(int a=0;a<pl.size();a++){
+                out.print(pl.get(a).getId()+" "+pl.get(a).getName()+" "+"<br/>");
+            }
+            
 //            RequestDispatcher rd = request.getRequestDispatcher("include/featureproduct.jsp");
-        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request,response);
         }
        

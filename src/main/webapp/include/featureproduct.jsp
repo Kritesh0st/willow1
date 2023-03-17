@@ -1,10 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%
-//RequestDispatcher rd = request.getRequestDispatcher("../user?page=index");
-//rd.forward(request,response);
-//response.sendRedirect("user?page=index");
-%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,8 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/stylex.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/stylex.css">
     <script src="https://kit.fontawesome.com/5045e83b56.js" crossorigin="anonymous"></script>
     <style>
       .productBody{height:auto;padding:1em 2.2em;}
@@ -45,18 +38,18 @@
           FEATURE PRODUCT
         </div>
         <div class="prod_list_box bor">
-          <div class="prod_listlist_box borx flex">
-              
-            <c:forEach items="${productlist}" var="pl">
+          <div class="prod_listlist_box bor flex">
+            productlist
+            <c:forEach items="${productlist}" var="productlist">
             <div class="prod_box flex fdc borx3 br3">
              <div class="prod_img_box bor flex jcc rel">
-              <img src="image/tshirt1.jpg" alt="" class="prod_img w100">
+              <img src="../image/test-img.png" alt="" class="prod_img w100">
               <div class="prod_img_qickview abs bor br3">
                 Quick View
               </div>
              </div>
-             <div class="prod_single_name borx">
-              ${pl.name}
+             <div class="prod_single_name bor">
+              T-Shirt
              </div>
              <div class="prod_single_price bor">
               NRS 3000
@@ -69,8 +62,8 @@
               <img src="../svg/start-stroke.svg" alt="" class="prod_start bor">
              </div>
             </div>
-            </c:forEach>
-             
+            </c:forEach> 
+              
           </div>
         </div>
       </div>
