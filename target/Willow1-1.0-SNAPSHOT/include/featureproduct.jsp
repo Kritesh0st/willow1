@@ -39,7 +39,6 @@
         </div>
         <div class="prod_list_box bor">
           <div class="prod_listlist_box bor flex">
-            productlist
             <c:forEach items="${productlist}" var="productlist">
             <div class="prod_box flex fdc borx3 br3">
              <div class="prod_img_box bor flex jcc rel">

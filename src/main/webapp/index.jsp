@@ -2,16 +2,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%--<%@include file="include/navbar.jsp" %>--%>
 <%
-//RequestDispatcher rd = request.getRequestDispatcher("user?page=index");
-//rd.forward(request,response);
-%>
-<%
 String plcheck = (String) session.getAttribute("plcheck");
-//String cat = (String) session.getAttribute("cat");
 out.print("plcheck value = "+plcheck);
-if(plcheck==null){
-    response.sendRedirect("user?page=index");
-}
+if(plcheck==null){response.sendRedirect("user?page=index");}
 %>
 <!DOCTYPE html>
 <html>
