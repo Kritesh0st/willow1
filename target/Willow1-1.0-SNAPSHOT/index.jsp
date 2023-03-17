@@ -3,7 +3,7 @@
 <%--<%@include file="include/navbar.jsp" %>--%>
 <%
 String plcheck = (String) session.getAttribute("plcheck");
-out.print("plcheck value = "+plcheck);
+//out.print("plcheck value = "+plcheck);
 if(plcheck==null){response.sendRedirect("user?page=index");}
 %>
 <!DOCTYPE html>
