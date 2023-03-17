@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600&family=Grape+Nuts&family=Indie+Flower&family=M+PLUS+Rounded+1c:wght@100;300;400;500&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&family=Rajdhani:wght@300;400;500&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400&display=swap');
+/* 
+font-family: 'Comfortaa', cursive;
+font-family: 'M PLUS Rounded 1c', sans-serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Raleway', sans-serif;
+font-family: 'Roboto Flex', sans-serif; 
+*/
+* {box-sizing: border-box;margin: 0;padding: 0;font-family: 'Rubik', sans-serif;}
+*:focus {outline: none;}
+::-webkit-scrollbar {width: 10px;}
+::-webkit-scrollbar-track{box-shadow: inset 0 0 5px grey;border-radius: 10px;}
+::-webkit-scrollbar-thumb{background:rgba(170,170,170,.2);border-radius:10px;transition: 0.3s;}
+::-webkit-scrollbar-thumb:hover {background: rgba(170,170,170,.5);cursor:pointer;}
+.mainbody {height: 5000px;width: 100%;}
+.borx {border: 1px solid #000;}
+.borx1 {border: 1px solid #333;}
+.borx2 {border: 1px solid #666;}
+.borx3 {border: 1px solid #999;}
+.borx4 {border: 1px solid #ccc;}
+.borr {border: 1px solid #f00;}
+.borg {border: 1px solid #0f0;}
+.borb {border: 1px solid #00f;}
+.bory {border: 1px solid #ff0}
+.borp {border: 1px solid #f0f;}
+.borc {border: 1px solid #0ff;}
+.borw {border: 1px solid #fff;}
+
+.outx {outline: 1px solid #000;}
+.outx1 {outline: 1px solid #333;}
+.outx2 {outline: 1px solid #666;}
+.outx3 {outline: 1px solid #999;}
+.outx4 {outline: 1px solid #ccc;}
+.outr {outline: 1px solid #f00;}
+.outg {outline: 1px solid #0f0;}
+.outb {outline: 1px solid #00f;}
+.outy {outline: 1px solid #ff0}
+.outp {outline: 1px solid #f0f;}
+.outc {outline: 1px solid #0ff;}
+.outw {outline: 1px solid #fff;}
+
+.bgx {background:#000;}
+.bgx1 {background:#333;}
+.bgx2 {background:#666;}
+.bgx3 {background:#999;}
+.bgx4 {background:#ccc;}
+.bgr {background:#f00;}
+.bgg {background:#0f0;}
+.bgb {background:#00f;}
+.bgy {background:#ff0}
+.bgp {background:#f0f;}
+.bgc {background:#0ff;}
+.bgw {background:#fff;}
+
+.txtx {color:#000;}
+.txtx1 {color:#333;}
+.txtx2 {color:#666;}
+.txtx3 {color:#999;}
+.txtx4 {color:#ccc;}
+.txtr {color:#f00;}
+.txtg {color:#0f0;}
+.txtb {color:#00f;}
+.txty {color:#ff0}
+.txtp {color:#f0f;}
+.txtc {color:#0ff;}
+.txtw {color:#fff;}
+
+.col1 {color:#e85a50;}
+.col2 {color:#e88174;}
+.col3 {color:#8e8d89;}
+.col4 {color:#d8c3a4;}
+.col5 {color:#eae8dc;}
+.abs {
+  position: absolute;
+}
+.hw100 {height: 100%;width: 100%;}
+.w100 {width: 100%;}
+.h100 {height: 100%;}
+.rel {position: relative;}
+.inr {height: 100%;width: 100%;position: relative;}
+.inrr {border: 1px solid #f00;height: 100%;width: 100%;position: relative;}
+.flexmid{display:flex;justify-content:center;align-items:center;}
+.flex {display: flex;}
+.fww {flex-wrap: wrap;}
+.jcc {justify-content: center;}
+.jcfs{justify-content: flex-start;}
+.jcfe{justify-content: flex-end;}
+.jcsb {justify-content: space-between;}
+.jcsa {justify-content: space-around;}
+.jcse {justify-content: space-evenly;}
+.aic {align-items: center;}
+.aifs {align-items: flex-start;}
+.aife {align-items: flex-end;}
+.fdc {flex-direction: column;}
+.fg1{flex-grow: 1;}
+.none {display: none;}
+.opa0 {opacity: 0;}
+.txt0 {color:#000;text-decoration: none;}
+.txt {text-decoration: none;color:#000;}
+.cup {cursor: pointer;}
+
+:root {
+  --ff1: 'Comfortaa', cursive;
+  --ff2: 'M PLUS Rounded 1c', sans-serif;
+  --ff3: 'Montserrat', sans-serif;
+  --ff4: 'Raleway', sans-serif;
+  --ff5: 'Roboto Flex', sans-serif; 
+  --borx: 1px solid #000;
+  --borx1: 1px solid #333;
+  --borx2: 1px solid #666;
+  --borx3: 1px solid #999;
+  --borx4: 1px solid #ccc;
+  --borr: 1px solid #f00;
+  --borg: 1px solid #0f0;
+  --borb: 1px solid #00f;
+  --bory: 1px solid #ff0;
+  --borp: 1px solid #f0f;
+  --borc: 1px solid #0ff;
+  --borw: 1px solid #fff;
+  
+  --col1: #e85a50;
+  --col2: #e88174;
+  --col3: #8e8d89;
+  --col4: #d8c3a4;
+  --col5: #eae8dc;
+}
+@media only screen and (max-width: 600px) {}
+@media only screen and (max-width: 768px) {}
+@media only screen and (max-width: 992px) {}
+@media only screen and (max-width: 1200px) {}
