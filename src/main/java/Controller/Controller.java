@@ -1,6 +1,4 @@
-
 package Controller;
-
 import Model.Product;
 import Service.DataService;
 import java.io.IOException;
@@ -35,7 +33,6 @@ public class Controller extends HttpServlet {
             for(int a=0;a<pl.size();a++){
                 out.print(pl.get(a).getId()+" "+pl.get(a).getName()+" "+"<br/>");
             }
-            
 //            RequestDispatcher rd = request.getRequestDispatcher("include/featureproduct.jsp");
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request,response);
