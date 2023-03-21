@@ -1,5 +1,6 @@
 <%@page import="java.io.PrintWriter"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%--<%@include file="include/navbar.jsp" %>--%>
 <%--<%@include file="include/featureproduct.jsp" %>--%>
 <%
 String plcheck = (String) session.getAttribute("plcheck");
@@ -71,11 +72,11 @@ if(plcheck==null){response.sendRedirect("user?page=index");}
   </head>
   <body>
     <div class="mainbody bor">
-      <div class="nav_body bor">
-        <div class="nav_body_desktop bor">
+      <div class="nav_body">
+        <div class="nav_body_desktop">
           <%@include file="include/navbar.jsp" %>
         </div>
-        <div class="nav_body_mobile bor">
+        <div class="nav_body_mobile">
           <!--  SPACE FOR RESPONSIVE NAVBAR  -->
         </div>
       </div>
@@ -218,9 +219,13 @@ if(plcheck==null){response.sendRedirect("user?page=index");}
           </div>
         </div>
         <!-- ------------------------------------------------------------------------------------------------------------- -->
+        <div class="discount_body bor"></div>
         <!-- ------------------------------------------------------------------------------------------------------------- -->
-        <div class="prod_feature_div_outer borx none">
-          <div class="prod_feature_div_inr borr">
+        <div class="prod_feature_div_outer bor non">
+          <div class="prod_feature_div_inr bor">
+            <%@include file="include/featureproduct.jsp" %>
+          </div>
+          <div class="prod_feature_div_inr bor">
             <!--  SPACE FOR FEATURE PRODUCT  -->
           </div>
         </div>

@@ -10,13 +10,16 @@
       .nav_title{font-family:var(--ff1);font-weight:600;font-size:28px;}
       .nav_searchbox{width:30em;}
       .nav_logo{width:30px;height:30px;padding:4px;cursor: pointer;}
+      .nav_Searchlogo_search{height:28px;width:28px;}
+      .nav_Searchlogo_times{height:24px;width:24px;}
 
       .nav_li_signin:hover .nav_signin_option{display:block;transition:.3s;}
       .nav_li_language:hover .nav_language_option{display:block;}
       .nav_li{margin-left:1.5em;}
       .nav_ahr{font-family:var(--ff5);text-decoration: none;color:#000;letter-spacing:.1em;font-size:16px;cursor: pointer;}
       .nav_logo_downarrow{width:22px;height:22px;margin-top:5px;cursor: pointer;}
-      .nav_input_Search{font-family:var(--ff5);letter-spacing:.1em;padding:0 10px;}
+      .nav_input_Search{font-family:var(--ff5);letter-spacing:.1em;padding:0 10px;border:none;}
+      .nav_input_Search:focus {outline:none;}
       .nav_language_option{top:30px;left:0;display: none;}
       .nav_lang_ne{padding:3px 10px;margin-top:5px;cursor: pointer;}
 
@@ -28,7 +31,6 @@
       .nav_sigin_logo{height:20px;width:20px;}
       .nav_signin_ahr{text-decoration: none;color: #000;margin-left:15px;}
       .nav_signin_ahr:hover .nav_sigin_li_span{background:#000;width:100%;height:2px;bottom:-1px;transition:.3s;}
-      
       
       .nav_signin_mid_title{font-size:20px;font-weight:500;letter-spacing:0.05em;padding-top:10px;}
     </style>
@@ -42,15 +44,15 @@
           </div>
         </div>
         <div class="nav_mid bor fg1 flex jcc">
-          <div class="nav_searchbox bor flex">
-            <div class="nav_searchbox_left borx2 flexmid plr10">
-              S
+          <div class="nav_searchbox borx2 br3 flex">
+            <div class="nav_searchbox_left bor flexmid">
+              <img src="icons/search.png" alt="" class="nav_logo nav_Searchlogo_search bor">
             </div>
             <div class="nav_searchbox_mid bor fg1">
               <input type="text" class="nav_input_Search bor hw100" placeholder="Search for products">
             </div>
-            <div class="nav_searchbox_right borx2 flexmid plr10">
-              x
+            <div class="nav_searchbox_right bor flexmid">
+              <img src="icons/times.png" alt="" class="nav_logo nav_Searchlogo_times bor">
             </div>
           </div>
         </div>

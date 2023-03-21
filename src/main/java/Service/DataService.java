@@ -13,8 +13,8 @@ public class DataService {
         List<Product> productlist = new ArrayList<>();
         String query = "select * from producttable";
         PreparedStatement ps = new DBConnection().getStatement(query);
-        
         try{
+            int count = 1;
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Product pl = new Product();
@@ -28,7 +28,10 @@ public class DataService {
                 pl.setXl(rs.getBoolean("xl"));
                 pl.setXxl(rs.getBoolean("xxl"));
                 pl.setXxxl(rs.getBoolean("xxxl"));
-                productlist.add(pl);
+                if(count < 6){
+                    productlist.add(pl);
+                    count++;
+                }
             }
 //            HttpSession sess = request.getSession();
 //            sess.setAttribute("productlist",productlist);
