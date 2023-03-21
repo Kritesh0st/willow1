@@ -238,3 +238,26 @@ if(plcheck==null){response.sendRedirect("user?page=index");}
     </script>
   </body>
 </html>
+
+<!--
+
+Database data type, data for this version
+table name producttable
+
+int id,rcount,rpoint,price,
+String name,description
+boolean x,xl,xxl,xxxl
+
+insert into producttable (rcount,rpoint,price,name,description,x,xl,xxl,xxxl) values 
+(18,3,4550,"Shoes","khutta ma launi jutta",1,1,1,1),
+(22,3,2550,"Glovs","khutta ma launi jutta haina",1,1,1,0),
+(18,3,4550,"Shoes","khutta ma launi jutta",1,1,1,1),
+(28,2,3250,"Shirt","khutta ma launi jutta haina",1,0,1,1),
+(17,4,2400,"T-Shirt","khutta ma launi jutta haina",1,1,0,1),
+(75,1,3050,"Pant","khutta ma launi jutta haina",1,0,0,1),
+(15,5,4000,"Jacket","khutta ma launi jutta haina",0,1,1,0),
+(7,3,2500,"Hat","khutta ma launi jutta haina",1,1,0,0),
+(41,2,3280,"Muflar","khutta ma launi jutta haina",1,1,1,1)
+;
+
+-->
