@@ -13,7 +13,7 @@
       .prod_main_title{font-family:var(--ff5);font-size:24px;font-weight:300;letter-spacing:.1em;padding-bottom: 20px;}
       .prod_list_box{overflow: auto;}
       .prod_listlist_box{width:134%;}
-      .prod_box{width:14%;padding:20px;}
+      .prod_box{width:16%;padding:20px;}
       .prod_img_box{height:220px;overflow:hidden;}
       .prod_img_qickview{font-family:var(--ff5);font-size:20px;bottom:0;letter-spacing:.1em;color:#fff;
         background:rgba(255,255,255,.5);cursor: pointer;height:0;overflow: hidden;padding:0;opacity:0;
@@ -32,23 +32,24 @@
     </style>
   </head>
   <body>
-    <div class="productBody bor">
+    <div class="productBody borg">
       <div class="prod_body_inr bor">
         <div class="prod_main_title">
           FEATURE PRODUCT
         </div>
         <div class="prod_list_box bor">
           <div class="prod_listlist_box bor flex">
-            <c:forEach items="${productlist}" var="productlist">
+              
+            <c:forEach items="${productlist}" var="pl">
             <div class="prod_box flex fdc borx3 br3">
              <div class="prod_img_box bor flex jcc rel">
-              <img src="../image/test-img.png" alt="" class="prod_img w100">
+              <img src="image/tshirt2.jpg" alt="" class="prod_img w100 borx">
               <div class="prod_img_qickview abs bor br3">
                 Quick View
               </div>
              </div>
              <div class="prod_single_name bor">
-              T-Shirt
+              ${pl.id} ${pl.name}
              </div>
              <div class="prod_single_price bor">
               NRS 3000

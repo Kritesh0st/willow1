@@ -7,11 +7,11 @@ font-family: 'Raleway', sans-serif;
 font-family: 'Roboto Flex', sans-serif; 
 */
 * {box-sizing: border-box;margin: 0;padding: 0;font-family: 'Rubik', sans-serif;}
-*:focus {outline: none;}
+/* *:focus {outline: none;}
 ::-webkit-scrollbar {width: 10px;}
 ::-webkit-scrollbar-track{box-shadow: inset 0 0 5px grey;border-radius: 10px;}
 ::-webkit-scrollbar-thumb{background:rgba(170,170,170,.2);border-radius:10px;transition: 0.3s;}
-::-webkit-scrollbar-thumb:hover {background: rgba(170,170,170,.5);cursor:pointer;}
+::-webkit-scrollbar-thumb:hover {background: rgba(170,170,170,.5);cursor:pointer;} */
 .mainbody {height: 5000px;width: 100%;}
 .borx {border: 1px solid #000;}
 .borx1 {border: 1px solid #333;}
@@ -70,9 +70,7 @@ font-family: 'Roboto Flex', sans-serif;
 .col3 {color:#8e8d89;}
 .col4 {color:#d8c3a4;}
 .col5 {color:#eae8dc;}
-.abs {
-  position: absolute;
-}
+.abs {position: absolute;}
 .hw100 {height: 100%;width: 100%;}
 .w100 {width: 100%;}
 .h100 {height: 100%;}
@@ -98,6 +96,7 @@ font-family: 'Roboto Flex', sans-serif;
 .txt0 {color:#000;text-decoration: none;}
 .txt {text-decoration: none;color:#000;}
 .cup {cursor: pointer;}
+.totext {text-decoration: none;color:#000;}
 
 :root {
   --ff1: 'Comfortaa', cursive;

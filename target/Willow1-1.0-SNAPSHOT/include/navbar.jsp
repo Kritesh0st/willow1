@@ -58,7 +58,7 @@
           <div class="nav_ulbox bor flex">
             <li class="nav_li nav_li_signin bor flexmid rel">
               <a href="#" class="nav_ahr bor flexmid">Sign In</a>&nbsp;
-              <img src="../svg/down-arrow.svg" alt="" class="nav_logo nav_logo_downarrow bor">
+              <img src="icons/arrow-down.png" alt="" class="nav_logo nav_logo_downarrow bor">
               <div class="nav_signin_option borx3 abs bgw zi2 br3">
                 <div class="nav_signin_top bor flex jcsb">
                   <div class="nav_signin_title bor">Kritesh's Account</div>
@@ -67,35 +67,35 @@
                 <div class="nav_signin_mid bor">
                   <ul class="nav_signin_ul bor">
                     <li class="nav_sigin_li bor flex">
-                      <img src="../svg/carttt.svg" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
+                      <img src="icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
                       <a href="#" class="nav_signin_ahr flex bor rel">
                         Purchase
                         <span class="nav_sigin_li_span abs"></span>
                       </a>
                     </li>
                     <li class="nav_sigin_li bor flex">
-                      <img src="../svg/carttt.svg" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
+                      <img src="icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
                       <a href="#" class="nav_signin_ahr flex bor rel">
                         Purchase
                         <span class="nav_sigin_li_span abs"></span>
                       </a>
                     </li>
                     <li class="nav_sigin_li bor flex">
-                      <img src="../svg/carttt.svg" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
+                      <img src="icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
                       <a href="#" class="nav_signin_ahr flex bor rel">
                         Purchase
                         <span class="nav_sigin_li_span abs"></span>
                       </a>
                     </li>
                     <li class="nav_sigin_li bor flex">
-                      <img src="../svg/carttt.svg" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
+                      <img src="icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
                       <a href="#" class="nav_signin_ahr flex bor rel">
                         Purchase
                         <span class="nav_sigin_li_span abs"></span>
                       </a>
                     </li>
                     <li class="nav_sigin_li bor flex">
-                      <img src="../svg/carttt.svg" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
+                      <img src="icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
                       <a href="#" class="nav_signin_ahr flex bor rel">
                         Purchase
                         <span class="nav_sigin_li_span abs"></span>
@@ -109,14 +109,14 @@
                 <div class="nav_signin_mid bor">
                   <ul class="nav_signin_ul bor">
                     <li class="nav_sigin_li bor flex">
-                      <img src="../svg/carttt.svg" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
+                      <img src="icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
                       <a href="#" class="nav_signin_ahr flex bor rel">
                         Purchase
                         <span class="nav_sigin_li_span abs"></span>
                       </a>
                     </li>
                     <li class="nav_sigin_li bor flex">
-                      <img src="../svg/carttt.svg" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
+                      <img src="icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
                       <a href="#" class="nav_signin_ahr flex bor rel">
                         Purchase
                         <span class="nav_sigin_li_span abs"></span>
@@ -128,15 +128,15 @@
             </li>
             <li class="nav_li bor flexmid">
               <a href="#" class="nav_ahr bor flexmid">Purchased</a>&nbsp;
-              <img src="../svg/box-taped.svg" alt="" class="nav_logo nav_logo_cart bor">
+              <img src="icons/package.png" alt="" class="nav_logo nav_logo_cart bor">
             </li>
             <li class="nav_li bor flexmid">
               <a href="#" class="nav_ahr bor flexmid">Cart</a>&nbsp;
-              <img src="../svg/carttt.svg" alt="" class="nav_logo nav_logo_cart bor">
+              <img src="icons/cart.png" alt="" class="nav_logo nav_logo_cart bor">
             </li>
             <li class="nav_li nav_li_language bor flexmid rel">
               <a href="#" class="nav_ahr bor flexmid">Language</a>&nbsp;
-              <img src="../svg/globe.svg" alt="" class="nav_logo nav_logo_cart bor">
+              <img src="icons/globe.png" alt="" class="nav_logo nav_logo_cart bor">
               <div class="nav_language_option borx2 abs w100 bgw br3">
                 <div class="nav_lang_ne nav_lang_nepali">Nepali</div>
                 <div class="nav_lang_ne nav_lang_english">English</div>
