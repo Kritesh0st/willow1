@@ -13,7 +13,7 @@
       .nav_Searchlogo_search{height:28px;width:28px;}
       .nav_Searchlogo_times{height:24px;width:24px;}
 
-      .nav_li_signin:hover .nav_signin_option{display:block;transition:.3s;}
+      .nav_li_signin:hover .nav_signin_option{display:block;transition:.3s;z-index:3;}
       .nav_li_language:hover .nav_language_option{display:block;}
       .nav_li{margin-left:1.5em;}
       .nav_ahr{font-family:var(--ff5);text-decoration: none;color:#000;letter-spacing:.1em;font-size:16px;cursor: pointer;}
@@ -23,7 +23,7 @@
       .nav_language_option{top:30px;left:0;display: none;}
       .nav_lang_ne{padding:3px 10px;margin-top:5px;cursor: pointer;}
 
-      .nav_signin_option{width:380%;top:30px;padding:16px;display: none;;}
+      .nav_signin_option{width:380%;top:30px;padding:16px;display: none;}
       .nav_signin_top{padding-bottom: 8px;}
       .nav_signin_title{font-size:20px;font-weight:500;letter-spacing:0.05em;}
       .nav_signin_signout{letter-spacing: 0.1em}

@@ -4,7 +4,7 @@
 <%--<%@include file="include/featureproduct.jsp" %>--%>
 <%
 String plcheck = (String) session.getAttribute("plcheck");
-if(plcheck==null){response.sendRedirect("user?page=index");}
+if(plcheck==null){response.sendRedirect("user?page=indexx");}
 %>
 <!DOCTYPE html>
 <html>
@@ -16,6 +16,7 @@ if(plcheck==null){response.sendRedirect("user?page=index");}
     <style>
       .mainbody{height:1000vh;}
       .nav_body{height:auto;}
+      .nav_body_desktop{z-index:3;}
 
       .land_subnav_box_outer{padding:1em 2.2em 1.6em 2.2em;}
       .land_subnav_li{padding:0 40px;}
@@ -28,7 +29,7 @@ if(plcheck==null){response.sendRedirect("user?page=index");}
       .land_carousel_lr:hover{background:rgba(255,255,255,.5);transition:.3s;}
       .land_carousel_left{left:20px;}
       .land_carousel_right{right:20px;}
-      .land_carsoul_sloth{overflow: hidden;}
+      .land_carsoul_sloth{overflow: hidden;z-index:-10;}
 
       .landcar_slide1_text_crate{height:400px;width:400px;transform: skew(-6.7deg);left:100px;
         background: rgba(112,173,196,.7);border:1px solid #70adc4;}
@@ -115,7 +116,7 @@ if(plcheck==null){response.sendRedirect("user?page=index");}
           <div class="land_carousel_div_inr h100 bor flexmid jcsb rel">
             <div class="land_carousle_crate  hw100 abs bor">
               <!-- ------------------------------------------------------------------------------------------------------------- -->
-              <div class="land_carsoul_sloth hw100 bor rel flex aic non">
+            <div class="land_carsoul_sloth hw100 bor rel flex aic non">
                 <img src="image/slide1.png" alt="" class="land_carousel_slide1 w100 abs">
                 <div class="landcar_slide1_text_crate bor abs">
                   <div class="landcar_slide1_text_crate_inr hw100 bor">

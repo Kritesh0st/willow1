@@ -1,5 +1,6 @@
 package Controller;
 import Model.Product;
+import Model.Productx;
 import Service.DataService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,13 +16,13 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "Controller", urlPatterns = {"/user"})
 public class Controller extends HttpServlet {
 
-   @Override
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         String page = request.getParameter("page");
-       
+
         if(page.equalsIgnoreCase("index")){
             List<Product> pl = null;
             pl = new DataService().featureProduct();
@@ -37,13 +38,22 @@ public class Controller extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request,response);
         }
-       
-       
+        else if (page.equalsIgnoreCase("indexx")) {
+            DataService d = new DataService();
+            List<Productx> pl = d.getFeatureProduct();
+            HttpSession sess = request.getSession();
+            sess.setAttribute("productlist", pl);
+            HttpSession ses = request.getSession();
+            ses.setAttribute("plcheck", "plcheck");
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            rd.forward(request, response);
+        }
+
     }
-    
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doPost(request,response);
-       
-    }   
+        doPost(request, response);
+
+    }
 }
