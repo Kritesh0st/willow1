@@ -117,7 +117,7 @@
             <div class="prod_body_inr bor">
                 <div class="prod_main_title_crate flex jcsb aic bor">
                     <div class="prod_main_title bor">
-                        FEATURE PRODUCT
+                        POPULAR PRODUCT
                     </div>
                     <div class="prod_main_title_more bor flex rel cup">
                         View More

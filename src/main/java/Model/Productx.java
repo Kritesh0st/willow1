@@ -1,9 +1,9 @@
 package Model;
 public class Productx {
     private int id,rcount,rpoint,price,discount;
-    private String name,description,path,size,clothid;
+    private String name,description,path,size,clothid,date;
     boolean typenumber;
-    
+
     public int getId() {
         return id;
     }
@@ -82,6 +82,14 @@ public class Productx {
 
     public void setClothid(String clothid) {
         this.clothid = clothid;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public boolean isTypenumber() {

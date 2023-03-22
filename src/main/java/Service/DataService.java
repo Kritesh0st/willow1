@@ -62,6 +62,7 @@ public class DataService {
                 pl.setPath(rs.getString("path"));
                 pl.setSize(rs.getString("size"));
                 pl.setClothid(rs.getString("clothid"));
+                pl.setDate(rs.getString("date"));
                 //boolean
                 pl.setTypenumber(rs.getBoolean("typenumber"));
                 

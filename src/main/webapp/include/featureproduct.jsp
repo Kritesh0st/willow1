@@ -14,7 +14,7 @@
         <style>
             .productBody{
                 height:auto;
-                padding:80px 2.2em;
+                padding:80px 2.2em 0 2.2em;
             }
             .prod_main_title_crate{
                 padding-bottom: 20px;
@@ -114,7 +114,7 @@
     </head>
     <body>
         <div class="productBody bor">
-            <div class="prod_body_inr borx3">
+            <div class="prod_body_inr bor">
                 <div class="prod_main_title_crate flex jcsb aic bor">
                     <div class="prod_main_title bor">
                         FEATURE PRODUCT
@@ -136,14 +136,14 @@
                         double discountedPrice = new index().getPercentOf(p.getDiscount(),p.getPrice());
                         String toStrikeStr = new index().toStrikeByDiscount(p.getDiscount());
                         String toDisplayStr = new index().toDisplayByDiscount(p.getDiscount());
-//                        String toDisplayNewStr = new index().isProductNewByDate(16,3,2023);
+                        String toDisplayNewStr = new index().isProductNewByDate(p.getDate());
                         %>
                             <div class="prod_sloth bor br3">
                                 <div class="inr_prod_sloth bor flex fdc">
                                     <div class="prod_image_sloth borx2 br3">
-                                        <img src="image/cloth/tshirt1.jpg" alt="" class="prod_img_img w100">
+                                        <img src=${pl.path} alt="" class="prod_img_img w100">
                                     </div>
-                                    <div class="prod_newitem_sloth prod_ff5 bor">New!</div>
+                                    <div class="prod_newitem_sloth prod_ff5 bor <%=toDisplayNewStr%>">New!</div>
                                     <div class="prod_name_sloth prod_ff5 bor">
                                         ${pl.name}
                                     </div>
@@ -152,7 +152,9 @@
                                         RS <%=discountedPrice%> (${pl.discount}% off)
                                     </div>
                                     
-                                    <div class="prod_price_sloth prod_ff5 bor <%=toStrikeStr%>">RS 3000</div>
+                                    <div class="prod_price_sloth prod_ff5 bor <%=toStrikeStr%>">
+                                        RS ${pl.price}
+                                    </div>
                                     <div class="prod_review_crate prod_ff5 bor flex">
                                         <div class="prod_review_start_crate flex aic pr10 bor">
                                             <!-- LOOPING BLACK STAR -->

@@ -227,6 +227,9 @@ if(plcheck==null){response.sendRedirect("user?page=indexx");}
             <%@include file="include/featureproduct.jsp" %>
           </div>
           <div class="prod_feature_div_inr bor">
+            <%@include file="include/popularproduct.jsp" %>
+          </div>
+          <div class="prod_feature_div_inr bor">
             <!--  SPACE FOR FEATURE PRODUCT  -->
           </div>
         </div>
