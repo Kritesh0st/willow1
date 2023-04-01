@@ -1,6 +1,8 @@
 package Controller;
+import Hashing.HashPassword;
 import Model.Product;
 import Model.Productx;
+import Model.User;
 import Service.DataService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,33 +24,74 @@ public class Controller extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         String page = request.getParameter("page");
-
+        out.print(page+"<br/>");
         if(page.equalsIgnoreCase("index")){
-            List<Product> pl = null;
-            pl = new DataService().featureProduct();
-            out.print("too <br/>");
+            List<Productx> featurepl = null;
+            List<Productx> popularpl = null;
+            featurepl = new DataService().getThreeTypeProduct("feature");
+            popularpl = new DataService().getThreeTypeProduct("popular");
+            
+            HttpSession featurePlSess = request.getSession();
+            featurePlSess.setAttribute("featurepl",featurepl);
+            HttpSession popularPlSess = request.getSession();
+            popularPlSess.setAttribute("popularpl",popularpl);
             HttpSession sess = request.getSession();
-            sess.setAttribute("productlist",pl);
-            HttpSession ses = request.getSession();
-            ses.setAttribute("plcheck","plcheck");
-            for(int a=0;a<pl.size();a++){
-                out.print(pl.get(a).getId()+" "+pl.get(a).getName()+" "+"<br/>");
-            }
-//            RequestDispatcher rd = request.getRequestDispatcher("include/featureproduct.jsp");
+            sess.setAttribute("plcheck","plcheck");
+            
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request,response);
         }
-        else if (page.equalsIgnoreCase("indexx")) {
-            DataService d = new DataService();
-            List<Productx> pl = d.getFeatureProduct();
-            HttpSession sess = request.getSession();
-            sess.setAttribute("productlist", pl);
-            HttpSession ses = request.getSession();
-            ses.setAttribute("plcheck", "plcheck");
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-            rd.forward(request, response);
+        else if(page.equalsIgnoreCase("signup")){
+            RequestDispatcher rd = request.getRequestDispatcher("pages/signup.jsp");
+            rd.forward(request,response);
         }
-
+        else if(page.equalsIgnoreCase("newUser")){
+            User user = new User();
+            user.setName(request.getParameter("fullname"));
+            user.setEmail(request.getParameter("email"));
+            user.setPassword(HashPassword.hashThisPass(request.getParameter("password")));
+            user.setPhnumber(request.getParameter("number"));
+            new DataService().insertUser(user);
+            out.print("Data inserted");
+            RequestDispatcher rd = request.getRequestDispatcher("user?page=signedin");
+            rd.forward(request,response);
+        } 
+        else if(page.equalsIgnoreCase("signin")){
+            RequestDispatcher rd = request.getRequestDispatcher("pages/signin.jsp");
+            rd.forward(request,response);
+        }
+        else if(page.equalsIgnoreCase("signedin")){
+            String email = request.getParameter("email");
+            String password = HashPassword.hashThisPass(request.getParameter("password"));
+            out.print("name "+email+"<br/>");
+            out.print("password "+password+"<br/>");
+            User user = new DataService().getSingleUserBy(email, password);
+            if(user != null){
+                HttpSession sess = request.getSession();
+                sess.setAttribute("username",user.getName());
+                out.print("user.getName() "+user.getName());
+                RequestDispatcher rd = request.getRequestDispatcher("user?page=index");
+                rd.forward(request,response);
+            }
+            else{
+                out.println("incorrect");
+                RequestDispatcher rd = request.getRequestDispatcher("user?page=index");
+                rd.forward(request,response);
+            }
+        }
+        else if(page.equalsIgnoreCase("signout")){
+            HttpSession sess = request.getSession(false);
+            sess.invalidate();
+            
+            RequestDispatcher rd = request.getRequestDispatcher("user?page=index");
+            rd.forward(request,response);
+        }
+        
+        else if(page.equalsIgnoreCase("dashboard")){
+            
+            RequestDispatcher rd = request.getRequestDispatcher("pages/dashboard.jsp");
+            rd.forward(request,response);
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -57,3 +100,15 @@ public class Controller extends HttpServlet {
 
     }
 }
+            
+/*
+
+alter table userinfo
+drop column number;
+
+alter table userinfo
+add number varchar(255);
+
+sHOW FIELDS FROM tablename
+show fields from userinfo
+*/ 

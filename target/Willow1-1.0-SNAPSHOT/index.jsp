@@ -4,12 +4,12 @@
 <%--<%@include file="include/featureproduct.jsp" %>--%>
 <%
 String plcheck = (String) session.getAttribute("plcheck");
-if(plcheck==null){response.sendRedirect("user?page=indexx");}
+if(plcheck==null){response.sendRedirect("user?page=index");}
 %>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Willow | 01</title>
+    <title> Willow | 01</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/stylex.css">
@@ -233,6 +233,9 @@ if(plcheck==null){response.sendRedirect("user?page=indexx");}
             <!--  SPACE FOR FEATURE PRODUCT  -->
           </div>
         </div>
+        <div class="footer bor"> 
+          <%@include file="include/footer.jsp" %>
+        </div> 
       </div>
     </div>
     <script src="js1/script1.js"></script>

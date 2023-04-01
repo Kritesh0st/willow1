@@ -54,11 +54,26 @@ public class index {
         int[] returnval = {nowDayInt,nowMonthInt,nowYearInt};
         return returnval;
     }
+    
+    public String signedInOrOut(boolean userdata){
+        String returnval = "";
+        if(!userdata){
+            returnval = "none";
+        }
+        return returnval ;
+    }
+    
+    public String extractFirstName(String fullname){
+        String firstname=fullname;
+        if (fullname.contains(" ")) {
+            int firstSpacePosition = fullname.indexOf(" ");
+            firstname = fullname.substring(0,firstSpacePosition);
+        }
+        return firstname;
+    }
     public static void main(String[] args) {
         index i = new index();
-        String dis = i.isProductNewByDate("15-03-2023");
-        System.out.println("New display:"+dis);
-        
+        System.out.println("First name: "+i.extractFirstName("Kritesh Thapa"));        
     }
 }
 /*

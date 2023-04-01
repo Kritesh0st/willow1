@@ -1,3 +1,16 @@
+<%@page import="Support.index"%>
+<%
+String usercheck = (String) session.getAttribute("usercheck");
+String username = (String) session.getAttribute("username");
+boolean toDisplayLoginsBool = false;
+String firstname = "Hello";
+if(username!=null){
+    toDisplayLoginsBool=true;
+    firstname = new index().extractFirstName(username);
+}          
+String toDisplayUsername = new index().signedInOrOut(toDisplayLoginsBool);
+String toDisplaySignIn = new index().signedInOrOut(!toDisplayLoginsBool);
+%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -23,7 +36,7 @@
       .nav_language_option{top:30px;left:0;display: none;}
       .nav_lang_ne{padding:3px 10px;margin-top:5px;cursor: pointer;}
 
-      .nav_signin_option{width:380%;top:30px;padding:16px;display: none;}
+      .nav_signin_option{width:360px;top:30px;padding:16px;display: none;}
       .nav_signin_top{padding-bottom: 8px;}
       .nav_signin_title{font-size:20px;font-weight:500;letter-spacing:0.05em;}
       .nav_signin_signout{letter-spacing: 0.1em}
@@ -39,9 +52,9 @@
     <div class="navbarBody bor">
       <div class="nav_inrbody bor flex jcsb">
         <div class="nav_left bor">
-          <div class="nav_title">
+          <a href="user?page=index" class="nav_title totext">
             WILLOW
-          </div>
+          </a>
         </div>
         <div class="nav_mid bor fg1 flex jcc">
           <div class="nav_searchbox borx2 br3 flex">
@@ -57,47 +70,47 @@
           </div>
         </div>
         <div class="nav_right bor">
-          <div class="nav_ulbox bor flex">
-            <li class="nav_li nav_li_signin bor flexmid rel">
-              <a href="#" class="nav_ahr bor flexmid">Sign In</a>&nbsp;
+          <ul class="nav_ulbox bor flex">
+            <li class="nav_li nav_li_signin bor flexmid rel <%=toDisplayUsername%>">
+              <a href="user?page=profile" class="nav_ahr bor flexmid">Hi, <%=firstname%></a>&nbsp;
               <img src="icons/arrow-down.png" alt="" class="nav_logo nav_logo_downarrow bor">
               <div class="nav_signin_option borx3 abs bgw zi2 br3">
                 <div class="nav_signin_top bor flex jcsb">
-                  <div class="nav_signin_title bor">Kritesh's Account</div>
-                  <div class="nav_signin_signout bor flexmid">Sign Out</div>
+                  <div class="nav_signin_title bor"><%=firstname%>'s Account</div>
+                  <a href="user?page=signout" class="nav_signin_signout bor flexmid totext">Sign Out</a>
                 </div>
                 <div class="nav_signin_mid bor">
                   <ul class="nav_signin_ul bor">
                     <li class="nav_sigin_li bor flex">
-                      <img src="icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
+                      <img src="../icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
                       <a href="#" class="nav_signin_ahr flex bor rel">
                         Purchase
                         <span class="nav_sigin_li_span abs"></span>
                       </a>
                     </li>
                     <li class="nav_sigin_li bor flex">
-                      <img src="icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
+                      <img src="../icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
                       <a href="#" class="nav_signin_ahr flex bor rel">
                         Purchase
                         <span class="nav_sigin_li_span abs"></span>
                       </a>
                     </li>
                     <li class="nav_sigin_li bor flex">
-                      <img src="icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
+                      <img src="../icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
                       <a href="#" class="nav_signin_ahr flex bor rel">
                         Purchase
                         <span class="nav_sigin_li_span abs"></span>
                       </a>
                     </li>
                     <li class="nav_sigin_li bor flex">
-                      <img src="icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
+                      <img src="../icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
                       <a href="#" class="nav_signin_ahr flex bor rel">
                         Purchase
                         <span class="nav_sigin_li_span abs"></span>
                       </a>
                     </li>
                     <li class="nav_sigin_li bor flex">
-                      <img src="icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
+                      <img src="../icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
                       <a href="#" class="nav_signin_ahr flex bor rel">
                         Purchase
                         <span class="nav_sigin_li_span abs"></span>
@@ -111,14 +124,14 @@
                 <div class="nav_signin_mid bor">
                   <ul class="nav_signin_ul bor">
                     <li class="nav_sigin_li bor flex">
-                      <img src="icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
+                      <img src="../icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
                       <a href="#" class="nav_signin_ahr flex bor rel">
                         Purchase
                         <span class="nav_sigin_li_span abs"></span>
                       </a>
                     </li>
                     <li class="nav_sigin_li bor flex">
-                      <img src="icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
+                      <img src="../icons/cart.png" alt="" class="nav_sigin_logo nav_sigin_logo_cart bor">
                       <a href="#" class="nav_signin_ahr flex bor rel">
                         Purchase
                         <span class="nav_sigin_li_span abs"></span>
@@ -128,30 +141,22 @@
                 </div>
               </div>
             </li>
-            <li class="nav_li bor flexmid">
-              <a href="#" class="nav_ahr bor flexmid">Purchased</a>&nbsp;
-              <img src="icons/package.png" alt="" class="nav_logo nav_logo_cart bor">
+            <li class="nav_li bor flexmid <%=toDisplaySignIn%>">
+              <a href="user?page=signin" class="nav_ahr bor flexmid">Sign In</a>&nbsp;
+              <img src="icons/signin.png" alt="" class="nav_logo nav_logo_cart bor">
             </li>
             <li class="nav_li bor flexmid">
-              <a href="#" class="nav_ahr bor flexmid">Cart</a>&nbsp;
+              <a href="user?page=cart" class="nav_ahr bor flexmid">Cart</a>&nbsp;
               <img src="icons/cart.png" alt="" class="nav_logo nav_logo_cart bor">
             </li>
-            <li class="nav_li nav_li_language bor flexmid rel">
-              <a href="#" class="nav_ahr bor flexmid">Language</a>&nbsp;
-              <img src="icons/globe.png" alt="" class="nav_logo nav_logo_cart bor">
-              <div class="nav_language_option borx2 abs w100 bgw br3">
-                <div class="nav_lang_ne nav_lang_nepali">Nepali</div>
-                <div class="nav_lang_ne nav_lang_english">English</div>
-              </div>
+            <li class="nav_li bor flexmid">
+              <a href="user?page=purchased" class="nav_ahr bor flexmid">Purchased</a>&nbsp;
+              <img src="icons/package.png" alt="" class="nav_logo nav_logo_cart bor">
             </li>
-          </div>
+            
+          </ul>
         </div>
       </div>
     </div>
-    <script src="../js1/script1.js"></script>
-    <script>
-      //var mainbody = document.querySelector(".mainbody");
-      //var inrgmblock = document.querySelectorAll(".inrgmblock");
-    </script>
   </body>
 </html>

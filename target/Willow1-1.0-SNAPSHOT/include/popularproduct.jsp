@@ -128,7 +128,7 @@
                     <div class="inr_prod_list_box bor flex ">
 
                         <!-- FOR EACH SLOTH -->
-                        <c:forEach items="${productlist}" var="pl">
+                        <c:forEach items="${popularpl}" var="pl">
                         <%
                         Productx p =(Productx) pageContext.getAttribute("pl");
                         int blackStartCount = p.getRpoint();
