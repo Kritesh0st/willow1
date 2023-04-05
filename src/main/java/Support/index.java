@@ -24,6 +24,12 @@ public class index {
         
         return returnval;
     }
+    public String getDate(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        String d = dtf.format(now);
+        return d;
+    }
     public String isProductNewByDate(String prodDate){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDateTime now = LocalDateTime.now();
@@ -74,7 +80,9 @@ public class index {
     public static void main(String[] args) {
         index i = new index();
         System.out.println("First name: "+i.extractFirstName("Kritesh Thapa"));        
+        System.out.println("Date: "+i.getDate());
     }
+    
 }
 /*
 

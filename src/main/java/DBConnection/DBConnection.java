@@ -8,7 +8,7 @@ public class DBConnection{
     public DBConnection(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            String dbUrl = "jdbc:mysql://localhost:3306/willow";
+            String dbUrl = "jdbc:mysql://localhost:3306/willow1";
             String dbName = "root";
             String dbPassword = "";
             con = DriverManager.getConnection(dbUrl, dbName, dbPassword);

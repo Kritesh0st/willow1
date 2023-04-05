@@ -53,7 +53,7 @@ String toDisplaySignIn = new index().signedInOrOut(!toDisplayLoginsBool);
       <div class="nav_inrbody bor flex jcsb">
         <div class="nav_left bor">
           <a href="user?page=index" class="nav_title totext">
-            WILLOW
+            WILLOW x<%=toDisplayLoginsBool%>y
           </a>
         </div>
         <div class="nav_mid bor fg1 flex jcc">

@@ -2,20 +2,30 @@ package Controller;
 import Hashing.HashPassword;
 import Model.Product;
 import Model.Productx;
+import Model.SizeCount;
 import Model.User;
 import Service.DataService;
+import Service.ProductService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 @WebServlet(name = "Controller", urlPatterns = {"/user"})
+@MultipartConfig(
+  fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
+  maxFileSize = 1024 * 1024 * 10,      // 10 MB
+  maxRequestSize = 1024 * 1024 * 100   // 100 MB
+)
 public class Controller extends HttpServlet {
 
     @Override
@@ -70,8 +80,14 @@ public class Controller extends HttpServlet {
                 HttpSession sess = request.getSession();
                 sess.setAttribute("username",user.getName());
                 out.print("user.getName() "+user.getName());
-                RequestDispatcher rd = request.getRequestDispatcher("user?page=index");
-                rd.forward(request,response);
+                if(user.getEmail().equals("kritesh@gmail.com")){
+                    RequestDispatcher rd = request.getRequestDispatcher("user?page=dashboard&product=view");
+                    rd.forward(request,response);
+                }
+                else{
+                    RequestDispatcher rd = request.getRequestDispatcher("user?page=index");
+                    rd.forward(request,response);
+                }                
             }
             else{
                 out.println("incorrect");
@@ -86,10 +102,82 @@ public class Controller extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("user?page=index");
             rd.forward(request,response);
         }
-        
+//        dashboadr
         else if(page.equalsIgnoreCase("dashboard")){
-            
-            RequestDispatcher rd = request.getRequestDispatcher("pages/dashboard.jsp");
+            String product = request.getParameter("product");
+            if(product!=null){
+                if(product.equals("productlist")){
+                    Product pr = new Product();
+                    List<Product> prList = new ProductService().getProductList();
+                    out.println(prList.size());
+                    request.setAttribute("productlist", prList);
+                    RequestDispatcher rd = request.getRequestDispatcher("pages/productListPage.jsp");
+                    rd.forward(request,response);
+                }
+                else if(product.equals("productadd")){
+                    RequestDispatcher rd = request.getRequestDispatcher("pages/productAddPage.jsp");
+                    rd.forward(request,response);
+                }
+            }
+            else{
+                RequestDispatcher rd = request.getRequestDispatcher("pages/dashboard.jsp");
+                rd.forward(request,response);
+            }
+        }
+        else if(page.equalsIgnoreCase("productadd")){
+            Part filePart = request.getPart("file");
+            String fileName = filePart.getSubmittedFileName();
+            String filePathName = "D:\\upload\\blog" + fileName;
+            for (Part part : request.getParts()) {
+              part.write(filePathName);
+            }
+            try{
+                Product pr = new Product();
+                pr.setName(request.getParameter("name"));
+                pr.setDescription(request.getParameter("description"));
+                pr.setImage(filePathName);
+                pr.setCategory(request.getParameter("category"));
+                pr.setPrice(Integer.parseInt(request.getParameter("price")));
+                pr.setTags(request.getParameter("tags"));
+                pr.setBrand(request.getParameter("brand"));
+                out.print(pr.getName()+"<br/>");
+                out.print(pr.getDescription()+"<br/>");
+                out.print(pr.getImage()+"<br/>");
+                out.print(pr.getCategory()+"<br/>");
+                out.print(pr.getPrice()+"<br/>");
+                out.print(pr.getTags()+"<br/>");
+                out.print(pr.getBrand()+"<br/>");
+                new DataService().insertProduct(pr);
+                out.print("Data inserted 1<br/><br/>");
+                
+                List<SizeCount> sclist = new ArrayList<>();
+                for(int a=1;a<=10;a++){
+                    SizeCount sc = new SizeCount();
+                    String sizeStr = request.getParameter("size"+a);
+                    String countStr = request.getParameter("count"+a);
+                    if(!sizeStr.equals("") && !countStr.equals("")){
+                        sc.setSize(sizeStr);
+                        sc.setCount(Integer.parseInt(countStr));
+                        sclist.add(sc);
+                    }
+//                    out.print(a+" "+sizeStr+" "+countStr+" "+"sclist size= "+sclist.size()+"<br/>");
+                }
+                for(SizeCount sc: sclist){
+                    out.print(sc.getSize()+" "+sc.getCount());
+                    new DataService().insertSizeCountForPorduct(sc);
+                }
+                out.print("Data inserted 2<br/><br/>");
+            }
+            catch(Exception e){
+                out.print("ERROR: "+e);
+            }
+        }
+        else if(page.equalsIgnoreCase("productlist")){
+            Product pr = new Product();
+            List<Product> prList = new ProductService().getProductList();
+            out.println(prList.size());
+            request.setAttribute("productlist", prList);
+            RequestDispatcher rd = request.getRequestDispatcher("pages/userlist.jsp");
             rd.forward(request,response);
         }
     }

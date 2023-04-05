@@ -1,8 +1,8 @@
 package Model;
 public class Product {
-    private int id,rcount,rpoint,price;
-    private String name,description;
-    private boolean x,xl,xxl,xxxl;
+    private int id=0,price=0,discount=0,totalcount=0,discountedprice=0;
+    private String name,description,image,brand,category,tags,releasedate;
+    private boolean visibility=true;
 
     public int getId() {
         return id;
@@ -12,28 +12,36 @@ public class Product {
         this.id = id;
     }
 
-    public int getRcount() {
-        return rcount;
-    }
-
-    public void setRcount(int rcount) {
-        this.rcount = rcount;
-    }
-
-    public int getRpoint() {
-        return rpoint;
-    }
-
-    public void setRpoint(int rpoint) {
-        this.rpoint = rpoint;
-    }
-
     public int getPrice() {
         return price;
     }
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+    public int getTotalcount() {
+        return totalcount;
+    }
+
+    public void setTotalcount(int totalcount) {
+        this.totalcount = totalcount;
+    }
+
+    public int getDiscountedprice() {
+        return discountedprice;
+    }
+
+    public void setDiscountedprice(int discountedprice) {
+        this.discountedprice = discountedprice;
     }
 
     public String getName() {
@@ -52,35 +60,51 @@ public class Product {
         this.description = description;
     }
 
-    public boolean isX() {
-        return x;
+    public String getImage() {
+        return image;
     }
 
-    public void setX(boolean x) {
-        this.x = x;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public boolean isXl() {
-        return xl;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setXl(boolean xl) {
-        this.xl = xl;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
-    public boolean isXxl() {
-        return xxl;
+    public String getCategory() {
+        return category;
     }
 
-    public void setXxl(boolean xxl) {
-        this.xxl = xxl;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public boolean isXxxl() {
-        return xxxl;
+    public String getTags() {
+        return tags;
     }
 
-    public void setXxxl(boolean xxxl) {
-        this.xxxl = xxxl;
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    public String getReleasedate() {
+        return releasedate;
+    }
+
+    public void setReleasedate(String releasedate) {
+        this.releasedate = releasedate;
+    }
+
+    public boolean isVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(boolean visibility) {
+        this.visibility = visibility;
     }
 }
