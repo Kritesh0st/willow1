@@ -1,7 +1,7 @@
 package Model;
 public class Product {
     private int id=0,price=0,discount=0,totalcount=0,discountedprice=0;
-    private String name,description,image,brand,category,tags,releasedate;
+    private String name,description,image,brand,category,tags,releasedate,focused,avilablesize;
     private boolean visibility=true;
 
     public int getId() {
@@ -100,6 +100,23 @@ public class Product {
         this.releasedate = releasedate;
     }
 
+    public String getFocused() {
+        return focused;
+    }
+
+    public void setFocused(String focused) {
+        this.focused = focused;
+    }
+
+    public String getAvilablesize() {
+        return avilablesize;
+    }
+
+    public void setAvilablesize(String avilablesize) {
+        this.avilablesize = avilablesize;
+    }
+    
+    
     public boolean isVisibility() {
         return visibility;
     }

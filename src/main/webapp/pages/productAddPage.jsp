@@ -220,7 +220,7 @@
                             Category
                           </td>
                           <td>
-                            <select class="dProdAddTableInput" data-type="select" oninput="dProdAddFormOnchange(event)"  name="select">
+                            <select class="dProdAddTableInput" data-type="select" oninput="dProdAddFormOnchange(event)"  name="category">
                               <option value="both">Both</option>
                               <option value="male">male</option>
                               <option value="female">female</option>

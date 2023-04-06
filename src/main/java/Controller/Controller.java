@@ -33,8 +33,11 @@ public class Controller extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        
         String page = request.getParameter("page");
-        out.print(page+"<br/>");
+        String page1 = request.getParameter("product");
+        out.print("page"+" "+page1+"<br/>");
+        
         if(page.equalsIgnoreCase("index")){
             List<Productx> featurepl = null;
             List<Productx> popularpl = null;
@@ -81,7 +84,7 @@ public class Controller extends HttpServlet {
                 sess.setAttribute("username",user.getName());
                 out.print("user.getName() "+user.getName());
                 if(user.getEmail().equals("kritesh@gmail.com")){
-                    RequestDispatcher rd = request.getRequestDispatcher("user?page=dashboard&product=view");
+                    RequestDispatcher rd = request.getRequestDispatcher("user?page=dashboard&product=productadd");
                     rd.forward(request,response);
                 }
                 else{
@@ -102,20 +105,44 @@ public class Controller extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("user?page=index");
             rd.forward(request,response);
         }
-//        dashboadr
+//        dashboard ============================================================================
         else if(page.equalsIgnoreCase("dashboard")){
             String product = request.getParameter("product");
             if(product!=null){
                 if(product.equals("productlist")){
                     Product pr = new Product();
                     List<Product> prList = new ProductService().getProductList();
-                    out.println(prList.size());
+                    
+                    out.println(prList.size()+"<br/>");
                     request.setAttribute("productlist", prList);
+                    out.print("prList="+prList.get(0).getTotalcount());
                     RequestDispatcher rd = request.getRequestDispatcher("pages/productListPage.jsp");
                     rd.forward(request,response);
                 }
                 else if(product.equals("productadd")){
                     RequestDispatcher rd = request.getRequestDispatcher("pages/productAddPage.jsp");
+                    rd.forward(request,response);
+                }
+                else if(product.equals("productdetails")){
+                    out.print("Details page");
+                    int pid = Integer.parseInt(request.getParameter("id"));
+                    Product pr = new Product();
+                    pr = new ProductService().getProductDetail(pid);
+                    List<SizeCount> scList = new ProductService().getSizeCountForPorduct(pid);
+//                    request.setAttribute("pr", pr);
+                    request.setAttribute("productdetail", pr);
+                    request.setAttribute("productsizecount", scList);
+                    RequestDispatcher rd = request.getRequestDispatcher("pages/productDetailPage.jsp");
+                    rd.forward(request,response);
+                }
+                else if(product.equals("productedit")){
+                    out.print("Edit page");
+                    int pid = Integer.parseInt(request.getParameter("id"));
+                    Product pr = new ProductService().getProductDetail(pid);
+                    List<SizeCount> scList = new ProductService().getSizeCountForPorduct(pid);
+                    request.setAttribute("productdetail", pr);
+                    request.setAttribute("productsizecount", scList);
+                    RequestDispatcher rd = request.getRequestDispatcher("pages/productEditPage.jsp");
                     rd.forward(request,response);
                 }
             }
@@ -127,7 +154,10 @@ public class Controller extends HttpServlet {
         else if(page.equalsIgnoreCase("productadd")){
             Part filePart = request.getPart("file");
             String fileName = filePart.getSubmittedFileName();
-            String filePathName = "D:\\upload\\blog" + fileName;
+            String uploadPath = "D:\\AllFile5\\JavaCode\\Willow1\\src\\main\\webapp\\image\\upload\\pics";
+            String imgPath = "image\\upload\\pics";
+            String filePathName = uploadPath + fileName;
+            imgPath = imgPath + fileName;
             for (Part part : request.getParts()) {
               part.write(filePathName);
             }
@@ -135,7 +165,7 @@ public class Controller extends HttpServlet {
                 Product pr = new Product();
                 pr.setName(request.getParameter("name"));
                 pr.setDescription(request.getParameter("description"));
-                pr.setImage(filePathName);
+                pr.setImage(imgPath);
                 pr.setCategory(request.getParameter("category"));
                 pr.setPrice(Integer.parseInt(request.getParameter("price")));
                 pr.setTags(request.getParameter("tags"));
@@ -147,7 +177,7 @@ public class Controller extends HttpServlet {
                 out.print(pr.getPrice()+"<br/>");
                 out.print(pr.getTags()+"<br/>");
                 out.print(pr.getBrand()+"<br/>");
-                new DataService().insertProduct(pr);
+                new ProductService().insertProduct(pr);
                 out.print("Data inserted 1<br/><br/>");
                 
                 List<SizeCount> sclist = new ArrayList<>();
@@ -164,7 +194,7 @@ public class Controller extends HttpServlet {
                 }
                 for(SizeCount sc: sclist){
                     out.print(sc.getSize()+" "+sc.getCount());
-                    new DataService().insertSizeCountForPorduct(sc);
+                    new ProductService().insertSizeCountForPorduct(sc);
                 }
                 out.print("Data inserted 2<br/><br/>");
             }

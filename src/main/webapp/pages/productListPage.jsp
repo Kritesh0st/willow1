@@ -160,15 +160,15 @@
                         ${prlist.discount}%
                       </td>
                       <td>
-                        29,30,31,32,33
+                        ${prlist.avilablesize}
                       </td>
                       <td>
-                        18
+                        ${prlist.totalcount}
                       </td>
                       <td>
                         ${prlist.visibility}
                       </td>
-                      <td><a href="#" class="dProdListDetailLink txtx">
+                      <td><a href="user?page=dashboard&product=productdetails&id=${prlist.id}" class="dProdListDetailLink txtx">
                         Details
                       </a></td>
                     </tr>

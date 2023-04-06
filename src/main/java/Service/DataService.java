@@ -107,57 +107,6 @@ public class DataService {
         }
         return us;
     }
-    public void insertProduct(Product pr){
-        String query = "insert into productinfo(name,description,image,brand,category,price,discount,tags,totalcount,releasedate,visibility) values (?,?,?,?,?,?,?,?,?,?,?)";
-        PreparedStatement ps = new DBConnection().getStatement(query);
-        try{
-            ps.setString(1,pr.getName());
-            ps.setString(2,pr.getDescription());
-            ps.setString(3,pr.getImage());
-            ps.setString(4,pr.getBrand());
-            ps.setString(5,pr.getCategory());
-            ps.setInt(6,pr.getPrice());
-            ps.setInt(7,pr.getDiscount());
-            ps.setString(8,pr.getTags());
-            ps.setInt(9,pr.getTotalcount());
-            ps.setString(10,new index().getDate());
-            ps.setBoolean(11,pr.isVisibility());
-            ps.execute();
-        }
-        catch(SQLException e){
-            e.printStackTrace();
-            System.out.println("Insert User Error : "+e);
-        }
-    }
-    public void insertSizeCountForPorduct(SizeCount scc){
-        String query = "insert into sizecount(pid,size,count) values(?,?,?)";
-        PreparedStatement ps = new DBConnection().getStatement(query);
-         try{
-            ps.setInt(1,getProductinfoLastid());
-            ps.setString(2,scc.getSize());
-            ps.setInt(3,scc.getCount());
-            ps.execute();
-        }
-        catch(SQLException e){
-            e.printStackTrace();
-            System.out.println("Insert User Error : "+e);
-        }
-    }
-    public int getProductinfoLastid(){
-        int lastId=1;
-        String query = "select*from productinfo";
-        PreparedStatement ps = new DBConnection().getStatement(query);
-        try{
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                lastId = rs.getInt("id");
-            }
-        }
-         catch(SQLException e){
-            e.printStackTrace();
-        }
-        return lastId;
-    }
     public static void main(String[] args) {
         DataService ds = new DataService();
         List<Productx> ps = ds.getThreeTypeProduct("popular");
@@ -166,7 +115,6 @@ public class DataService {
         u.setName("Kritesh t2");
         
         ds.insertUser(u);
-        ds.getProductinfoLastid();
     }
 }
 /*
