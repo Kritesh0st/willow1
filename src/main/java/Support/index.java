@@ -77,10 +77,31 @@ public class index {
         }
         return firstname;
     }
+    public String reverseString(String str){  
+        char ch[]=str.toCharArray();  
+        String rev="";  
+        for(int i=ch.length-1;i>=0;i--){  
+            rev+=ch[i];  
+        }  
+        return rev;  
+    }  
+    public String revStrDate(String date){
+        String newDate=date;
+        String[] dateArr = date.split("-");
+        String[] newDateArr = new String[3];
+        int a=0,b=0;
+        if(dateArr[0].length() == 2){
+            for(a=dateArr.length-1;a>=0;a--){
+                newDateArr[b] = dateArr[a];
+                b++;
+                newDate = String.join("-", newDateArr);
+            }
+        }
+        System.out.println(date+" "+newDate);
+        return newDate;
+    }
     public static void main(String[] args) {
         index i = new index();
-        System.out.println("First name: "+i.extractFirstName("Kritesh Thapa"));        
-        System.out.println("Date: "+i.getDate());
     }
     
 }

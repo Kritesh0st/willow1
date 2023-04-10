@@ -13,49 +13,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataService {
-    public List<Productx> getThreeTypeProduct(String typequery){
-        List<Productx> productlist = new ArrayList<>();
-        String query = "select * from displayproduct";
-        String queryForFeature = "select * from displayproduct as A inner join productinfo as B on A.clothcode = B.id where A.displayto = 'feature'";
-        String queryForPopular = "select * from displayproduct as A inner join productinfo as B on A.clothcode = B.id where A.displayto = 'popular'";
-        String queryForNewproduct = "select * from displayproduct as A inner join productinfo as B on A.clothcode = B.id where A.displayto = 'newproduct'";
+    public List<Product> getThreeTypeProduct(String typequery){
+        typequery = "feature";
+        List<Product> productlist = new ArrayList<>();
+        String query = "select*from productinfo";
+        String queryForFeature = "select*from productinfo where focused1 = true";
+        String queryForPopular = "select*from productinfo where focused2 = true";
+        String queryForNewproduct = "select*from productinfo where focused3 = true";
+        
         if(typequery.equals("feature")){query = queryForFeature;}
         else if(typequery.equals("popular")){query = queryForPopular;}
-        else if(typequery.equals("newproduct")){query = queryForPopular;}
+        else if(typequery.equals("newproduct")){query = queryForNewproduct;}
         PreparedStatement ps = new DBConnection().getStatement(query);
+        
         try{
             int count = 1;
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                Productx pl = new Productx();
-                //int
-                pl.setId(rs.getInt("id"));
-                pl.setRcount(rs.getInt("rcount"));
-                pl.setRpoint(rs.getInt("rpoint"));
-                pl.setPrice(rs.getInt("price"));
-                pl.setDiscount(rs.getInt("discount"));
-                //string
-                pl.setName(rs.getString("name"));
-                pl.setDescription(rs.getString("description"));
-                pl.setPath(rs.getString("path"));
-                pl.setSize(rs.getString("size"));
-                pl.setClothid(rs.getString("clothid"));
-                pl.setDate(rs.getString("date"));
-                //boolean
-                pl.setTypenumber(rs.getBoolean("typenumber"));
-                System.out.println("====================================");
-                System.out.println(pl.getId());
-                System.out.println(pl.getRcount());
-                System.out.println(pl.getRpoint());
-                System.out.println(pl.getPrice());
-                System.out.println(pl.getDiscount());
-                System.out.println(pl.getName());
-                System.out.println(pl.getDescription());
-                System.out.println(pl.getPath());
-                System.out.println(pl.getSize());
-                System.out.println(pl.getClothid());
-                System.out.println(pl.isTypenumber());
-                if(count < 6){productlist.add(pl);count++;}
+                Product pr = new Product();
+                pr = new Product();
+                pr.setId(rs.getInt("id"));
+                pr.setName(rs.getString("name"));
+                pr.setDescription(rs.getString("description"));
+                pr.setImage(rs.getString("image"));
+                pr.setBrand(rs.getString("brand"));
+                pr.setCategory(rs.getString("category"));
+                pr.setPrice(rs.getInt("price"));
+                pr.setDiscount(rs.getInt("discount"));
+                pr.setDiscountedprice((int) new index().getPercentOf(pr.getDiscount(),pr.getPrice()));
+                pr.setTags(rs.getString("tags"));
+                pr.setReleasedate(rs.getString("releasedate"));
+                
+                if(count < 6){productlist.add(pr);count++;}
             }
         }
         catch(SQLException e){
@@ -107,14 +96,34 @@ public class DataService {
         }
         return us;
     }
+    public List<User> getUserList(){
+        List<User> userlist = new ArrayList<>();
+        
+        String query = "select * from userinfo";
+        PreparedStatement ps = new DBConnection().getStatement(query);
+        
+        try{
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                User st = new User();
+                st.setId(rs.getInt("id"));
+                st.setName(rs.getString("name"));
+                st.setEmail(rs.getString("email"));
+                st.setAddress(rs.getString("address"));
+                st.setWishlist(rs.getString("wishlist"));
+                st.setCart(rs.getString("cart"));
+                st.setPhnumber(rs.getString("number"));
+                userlist.add(st);
+            }
+        }
+         catch(SQLException e){
+            e.printStackTrace();
+        }
+        return userlist;
+    }
     public static void main(String[] args) {
         DataService ds = new DataService();
-        List<Productx> ps = ds.getThreeTypeProduct("popular");
-        
-        User u = new User();
-        u.setName("Kritesh t2");
-        
-        ds.insertUser(u);
+        List<Product> ps = ds.getThreeTypeProduct("popular");
     }
 }
 /*

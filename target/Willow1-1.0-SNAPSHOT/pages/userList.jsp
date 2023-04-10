@@ -5,6 +5,8 @@
   <head>
     <title>Product | List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/stylex.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/stylex.css">
     <style>
@@ -121,52 +123,50 @@
             <div class="dProdListBody w100 out">
               <div class="inrdProdListBody hw100 out">
                 <div class="dProdListTitleSloth pb15 ff1 out">
-                  PRODUCT > List
+                  User > List
                 </div>
                 <div class="dProdListMainContainer bor">
                   <table class="dProdListTable bor w100">
                     <tr>
                       <td class="dProdListTdTitle">Id</td>
                       <td class="dProdListTdTitle">Name</td>
-                      <td class="dProdListTdTitle">Brand</td>
-                      <td class="dProdListTdTitle">Price</td>
-                      <td class="dProdListTdTitle">Discount</td>
-                      <td class="dProdListTdTitle">Avilable size</td>
-                      <td class="dProdListTdTitle">Total count</td>
-                      <td class="dProdListTdTitle">Visibility</td>
+                      <td class="dProdListTdTitle">Email</td>
+                      <td class="dProdListTdTitle">Address</td>
+<!--                      <td class="dProdListTdTitle">Wishlist</td>
+                      <td class="dProdListTdTitle">Cart</td>-->
+                      <td class="dProdListTdTitle">Number</td>
                       <td class="dProdListTdTitle">Details</td>
                     </tr>
-                    <c:forEach items="${productlist}" var="prlist">
+                    
+                    <c:forEach items="${userlist}" var="ulist">
                     <tr>
                       <td>
-                        ${prlist.id}
+                        ${ulist.id}
                       </td>
                       <td>
-                        ${prlist.name}
+                        ${ulist.name}
                       </td>
                       <td>
-                        ${prlist.brand}
+                        ${ulist.email}
                       </td>
                       <td>
-                        ${prlist.price}
+                        ${ulist.address}
+                      </td>
+<!--                      <td>
+                        ${ulist.wishlist}
                       </td>
                       <td>
-                        ${prlist.discount}%
-                      </td>
+                        ${ulist.cart}
+                      </td>-->
                       <td>
-                        ${prlist.avilablesize}
+                        ${ulist.phnumber}
                       </td>
-                      <td>
-                        ${prlist.totalcount}
-                      </td>
-                      <td>
-                        ${prlist.visibility}
-                      </td>
-                      <td><a href="user?page=dashboard&product=productdetails&id=${prlist.id}" class="dProdListDetailLink txtx">
+                      <td><a href="user?page=userdetails" class="dProdListDetailLink txtx">
                         Details
                       </a></td>
                     </tr>
                     </c:forEach>
+        
                   </table>
                 </div>
               </div>

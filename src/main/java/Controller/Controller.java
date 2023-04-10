@@ -8,6 +8,7 @@ import Service.DataService;
 import Service.ProductService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -33,24 +34,22 @@ public class Controller extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
         String page = request.getParameter("page");
-        String page1 = request.getParameter("product");
-        out.print("page"+" "+page1+"<br/>");
+        out.print("page"+" "+page+"<br/><br/>");
         
         if(page.equalsIgnoreCase("index")){
-            List<Productx> featurepl = null;
-            List<Productx> popularpl = null;
-            featurepl = new DataService().getThreeTypeProduct("feature");
-            popularpl = new DataService().getThreeTypeProduct("popular");
+            List<Product> featureList = new DataService().getThreeTypeProduct("feature");
+            List<Product> popularList = new DataService().getThreeTypeProduct("popular");
             
-            HttpSession featurePlSess = request.getSession();
-            featurePlSess.setAttribute("featurepl",featurepl);
-            HttpSession popularPlSess = request.getSession();
-            popularPlSess.setAttribute("popularpl",popularpl);
+            out.print("featurepl size = "+featureList.size()+"<br/>");
+//            HttpSession featureP1Sess = request.getSession();
+//            featureP1Sess.setAttribute("featurepl",featurep1);
+            request.setAttribute("featurePList", featureList);
+            request.setAttribute("popularPList", popularList);
+
             HttpSession sess = request.getSession();
             sess.setAttribute("plcheck","plcheck");
-            
+            out.print("plcheck");
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request,response);
         }
@@ -108,48 +107,72 @@ public class Controller extends HttpServlet {
 //        dashboard ============================================================================
         else if(page.equalsIgnoreCase("dashboard")){
             String product = request.getParameter("product");
-            if(product!=null){
-                if(product.equals("productlist")){
-                    Product pr = new Product();
-                    List<Product> prList = new ProductService().getProductList();
-                    
-                    out.println(prList.size()+"<br/>");
-                    request.setAttribute("productlist", prList);
-                    out.print("prList="+prList.get(0).getTotalcount());
-                    RequestDispatcher rd = request.getRequestDispatcher("pages/productListPage.jsp");
-                    rd.forward(request,response);
-                }
-                else if(product.equals("productadd")){
-                    RequestDispatcher rd = request.getRequestDispatcher("pages/productAddPage.jsp");
-                    rd.forward(request,response);
-                }
-                else if(product.equals("productdetails")){
-                    out.print("Details page");
-                    int pid = Integer.parseInt(request.getParameter("id"));
-                    Product pr = new Product();
-                    pr = new ProductService().getProductDetail(pid);
-                    List<SizeCount> scList = new ProductService().getSizeCountForPorduct(pid);
-//                    request.setAttribute("pr", pr);
-                    request.setAttribute("productdetail", pr);
-                    request.setAttribute("productsizecount", scList);
-                    RequestDispatcher rd = request.getRequestDispatcher("pages/productDetailPage.jsp");
-                    rd.forward(request,response);
-                }
-                else if(product.equals("productedit")){
-                    out.print("Edit page");
-                    int pid = Integer.parseInt(request.getParameter("id"));
-                    Product pr = new ProductService().getProductDetail(pid);
-                    List<SizeCount> scList = new ProductService().getSizeCountForPorduct(pid);
-                    request.setAttribute("productdetail", pr);
-                    request.setAttribute("productsizecount", scList);
-                    RequestDispatcher rd = request.getRequestDispatcher("pages/productEditPage.jsp");
-                    rd.forward(request,response);
-                }
+            out.print("product "+product+"<br/><br/>");
+            if(product.equals("productlist")){
+                out.print("List page");
+                List<Product> prList = new ProductService().getProductList();
+                out.println(prList.size()+"<br/>");
+                request.setAttribute("productlist", prList);
+//                out.print("prList="+prList.get(0).getTotalcount());
+//                response.sendRedirect(request.getContextPath() + "/pages/productListPage.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("pages/productListPage.jsp");
+                rd.forward(request,response); 
             }
-            else{
-                RequestDispatcher rd = request.getRequestDispatcher("pages/dashboard.jsp");
+            else if(product.equals("productadd")){
+                RequestDispatcher rd = request.getRequestDispatcher("pages/productAddPage.jsp");
                 rd.forward(request,response);
             }
+            else if(product.equals("productdetails")){
+                out.print("Details page");
+                int pid = Integer.parseInt(request.getParameter("id"));
+                Product pr = new Product();
+                pr = new ProductService().getProductDetail(pid);
+                List<SizeCount> scList = new ProductService().getSizeCountForPorduct(pid);
+                request.setAttribute("productdetail", pr);
+                request.setAttribute("productsizecount", scList);
+                RequestDispatcher rd = request.getRequestDispatcher("pages/productDetailPage.jsp");
+                rd.forward(request,response);
+            }
+            else if(product.equals("productedit")){
+                out.print("Edit page");
+                try{
+                int a;
+                for(a=1;a<=10;a++){
+                    
+                }
+                    out.print(request.getParameter("hiddenpid"));
+                int pid = Integer.parseInt(request.getParameter("id"));
+                Product pr = new ProductService().getProductDetail(pid);
+                List<SizeCount> scList = new ProductService().getSizeCountForPorduct(pid);
+                request.setAttribute("productdetail", pr);
+                request.setAttribute("productsizecount", scList);
+                RequestDispatcher rd = request.getRequestDispatcher("pages/productEditPage.jsp");
+                rd.forward(request,response);
+                }
+                catch(Exception e){
+                    out.print("ERX: "+e);
+                }
+            }
+            else if(product.equals("productfocused")){
+                out.print("Focused page");
+                try{
+                List<Product> prList = new ProductService().getProductList();
+                out.println(prList.size()+"<br/>");
+                request.setAttribute("productlist", prList);
+                out.print("prList="+prList.get(0).getTotalcount());
+                RequestDispatcher rd = request.getRequestDispatcher("pages/productFocusedPage.jsp");
+                rd.forward(request,response); 
+                }
+                catch(Exception e){
+                    out.print("ERRX: "+e);
+                }
+            }
+            else if(product.equals("productdelete")){
+                int id = Integer.parseInt(request.getParameter("id"));
+                new ProductService().deleteProduct(id);
+                response.sendRedirect("user?page=dashboard&product=productlist");
+            }
+            
         }
         else if(page.equalsIgnoreCase("productadd")){
             Part filePart = request.getPart("file");
@@ -201,17 +224,117 @@ public class Controller extends HttpServlet {
             catch(Exception e){
                 out.print("ERROR: "+e);
             }
+            response.sendRedirect("user?page=dashboard&product=productlist");
+//            RequestDispatcher rd = request.getRequestDispatcher("pages/productListPage.jsp");
+//            rd.forward(request,response); 
         }
-        else if(page.equalsIgnoreCase("productlist")){
-            Product pr = new Product();
-            List<Product> prList = new ProductService().getProductList();
-            out.println(prList.size());
-            request.setAttribute("productlist", prList);
-            RequestDispatcher rd = request.getRequestDispatcher("pages/userlist.jsp");
+        else if(page.equalsIgnoreCase("productedit")){
+            int id = Integer.parseInt(request.getParameter("id"));
+            Part filePart = request.getPart("file");
+            String fileName = filePart.getSubmittedFileName();
+            String imgPath = "image\\upload\\pics";
+            if(fileName.equals("")){
+                imgPath = request.getParameter("hiddenimage");
+            }
+            else{
+                String uploadPath = "D:\\AllFile5\\JavaCode\\Willow1\\src\\main\\webapp\\image\\upload\\pics";
+                String filePathName = uploadPath + fileName;
+                imgPath = imgPath + fileName;
+                for (Part part : request.getParts()) {
+                  part.write(filePathName);
+                }
+            }
+            out.print("imgPath = "+imgPath+"<br/><br/>");
+            try{
+                Product pr = new Product();
+                pr.setName(request.getParameter("name"));
+                pr.setDescription(request.getParameter("description"));
+                pr.setBrand(request.getParameter("brand"));
+                pr.setCategory(request.getParameter("category"));
+                pr.setPrice(Integer.parseInt(request.getParameter("price")));
+                pr.setDiscount(Integer.parseInt(request.getParameter("discount")));
+                pr.setTags(request.getParameter("tags"));
+                pr.setReleasedate(request.getParameter("releasedate"));
+                String visibilityStr = request.getParameter("visibility");
+                String focusedStr1 = request.getParameter("focused1");
+                String focusedStr2 = request.getParameter("focused2");
+                boolean visibilityBool = false;
+                boolean focusedBool1 = false;
+                boolean focusedBool2 = false;
+                if(visibilityStr.equalsIgnoreCase("true")){visibilityBool = true;}
+                if(focusedStr1!=null){focusedBool1 = true;}
+                if(focusedStr2!=null){focusedBool2 = true;}
+                pr.setVisibility(visibilityBool);
+                pr.setFocused1(focusedBool1);
+                pr.setFocused2(focusedBool2);
+                pr.setImage(imgPath);
+                
+                out.print("Name = "+pr.getName()+"<br/>");
+                out.print("Description = "+pr.getDescription()+"<br/>");
+                out.print("Brand = "+pr.getBrand()+"<br/>");
+                out.print("Category = "+pr.getCategory()+"<br/>");
+                out.print("Price = "+pr.getPrice()+"<br/>");
+                out.print("Discount = "+pr.getDiscount()+"<br/>");
+                out.print("Tags = "+pr.getTags()+"<br/>");
+                out.print("Releasedate = "+pr.getReleasedate()+"<br/>");
+                out.print("Visibility = "+pr.isVisibility()+"<br/>");
+                out.print("Focused1 = "+pr.isFocused1()+"<br/>");
+                out.print("Focused2 = "+pr.isFocused2()+"<br/>");
+                out.print("Image = "+pr.getImage()+"<br/>");
+                try{
+                   new ProductService().updateProductById(id,pr); 
+                }
+                catch(SQLException e){
+                    out.print("ERRX: "+e);
+                }
+                out.print("Data Updated 1<br/><br/>");
+                
+                List<SizeCount> sclist = new ArrayList<>();
+                for(int a=1;a<=10;a++){
+                    SizeCount sc = new SizeCount();
+                    String sizeStr = request.getParameter("size"+a);
+                    String countStr = request.getParameter("count"+a);
+                    if(!sizeStr.equals("") && !countStr.equals("")){
+                        sc.setSize(sizeStr);
+                        sc.setCount(Integer.parseInt(countStr));
+                        sclist.add(sc);
+                    }
+//                    out.print(a+" "+sizeStr+" "+countStr+" "+"sclist size= "+sclist.size()+"<br/>");
+                }
+                for(SizeCount sc: sclist){
+                    out.print(sc.getSize()+" "+sc.getCount());
+                    new ProductService().updateProductSzieCountById(id,sc);
+                }
+                out.print("Data Updated 2<br/><br/>");
+                response.sendRedirect("user?page=dashboard&product=productlist");
+//                RequestDispatcher rd = request.getRequestDispatcher("pages/productListPage.jsp");
+//                rd.forward(request,response); 
+            }
+            catch(Exception e){
+                out.print("ERROR: "+e);
+            }
+        }
+        else if(page.equalsIgnoreCase("userlist")){
+            List<User> stList = new DataService().getUserList();
+            out.println(stList.size());
+            
+            request.setAttribute("userlist", stList);
+            RequestDispatcher rd = request.getRequestDispatcher("pages/userList.jsp");
+            rd.forward(request,response);
+        }
+        else if(page.equalsIgnoreCase("search")){
+            out.print("Search!!!! ");
+            String search = request.getParameter("search");
+            
+            out.print("value="+search+"<br/>");
+            Product p = new ProductService().seacrhProduct(search);
+            out.print("dv "+p.getName());
+            request.setAttribute("searchprd",p);
+            
+            RequestDispatcher rd = request.getRequestDispatcher("pages/searchPage.jsp");
             rd.forward(request,response);
         }
     }
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doPost(request, response);

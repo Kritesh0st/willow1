@@ -77,6 +77,9 @@ public class ProductService {
                 pr.setAvilablesize(getAvailableSizeForPorduct(pr.getId()));
                 pr.setTotalcount(getProductMaxCount(pr.getId()));
                 pr.setVisibility(rs.getBoolean("visibility"));
+                pr.setFocused1(rs.getBoolean("focused1"));
+                pr.setFocused2(rs.getBoolean("focused2"));
+                pr.setFocused3(rs.getBoolean("focused3"));
                 productlist.add(pr);
             }
         }
@@ -108,7 +111,9 @@ public class ProductService {
                 pr.setTotalcount(getProductMaxCount(pr.getId()));
                 pr.setReleasedate(rs.getString("releasedate"));
                 pr.setVisibility(rs.getBoolean("visibility"));
-                
+                pr.setFocused1(rs.getBoolean("focused1"));
+                pr.setFocused2(rs.getBoolean("focused2"));
+                pr.setFocused3(rs.getBoolean("focused3"));
                 pr.setFocused("focused");
             }
             System.out.println("");
@@ -134,6 +139,7 @@ public class ProductService {
             while(rs.next()){
                 SizeCount sc = new SizeCount();
                 sc.setId(id);
+                sc.setPid(rs.getInt("id"));
                 sc.setSize(rs.getString("size"));
                 sc.setCount(rs.getInt("count"));
                 scList.add(sc);
@@ -201,11 +207,69 @@ public class ProductService {
         }
         return availableSize;
     }
+
+    public void updateProductById(int id,Product prd) throws SQLException{
+        String query = "update productinfo set name=?, description=?, image=?, brand=?, category=?, price=?,"
+                + "discount=?, tags=?, totalcount=?, releasedate=?, visibility=?, focused1=?, focused2=? where id=?";
+        PreparedStatement ps = new DBConnection().getStatement(query);
+        ps.setString(1,prd.getName());
+        ps.setString(2,prd.getDescription());
+        ps.setString(3,prd.getImage());
+        ps.setString(4,prd.getBrand());
+        ps.setString(5,prd.getCategory());
+        ps.setInt(6,prd.getPrice());
+        ps.setInt(7,prd.getDiscount());
+        ps.setString(8,prd.getTags());
+        ps.setInt(9,prd.getTotalcount());
+        ps.setString(10,prd.getReleasedate());
+        ps.setBoolean(11,prd.isVisibility());
+        ps.setBoolean(12,prd.isFocused1());
+        ps.setBoolean(13,prd.isFocused2());
+        ps.setInt(14,id);
+        ps.execute();
+    }
+    
+    public void updateProductSzieCountById(int pid,SizeCount sc) throws SQLException{
+        String query = "update sizecount set size=?, count=? where pid=?";
+        PreparedStatement ps = new DBConnection().getStatement(query);
+        ps.setString(1,sc.getSize());
+        ps.setInt(2,sc.getCount());
+        ps.setInt(3,pid);
+        ps.execute();
+    }
+    public void deleteProduct(int id){
+        String query = "delete from productinfo where id = ?";
+        PreparedStatement ps = new DBConnection().getStatement(query);
+        try{
+            ps.setInt(1,id);
+            ps.execute();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    public Product seacrhProduct(String search){
+        search = "Black t-shirt";
+        System.out.println(search);
+        List<Product> productlist = getProductList();
+        Product p = new Product();
+        int a=0;
+        for(a=0;a<productlist.size();a++){
+            String prd = productlist.get(a).getName();
+            System.out.println("prd "+prd);
+            p = productlist.get(a);
+        }
+        System.out.println("ppp "+p.getId());
+        return p;
+    }
     public static void main(String[] args) {
         ProductService ps = new ProductService();
-        ps.getAvailableSizeForPorduct(1);
-        ps.getAvailableSizeForPorduct(2);
-        ps.getAvailableSizeForPorduct(3);
-        ps.getAvailableSizeForPorduct(4);
+//        ps.getAvailableSizeForPorduct(1);
+//        ps.getAvailableSizeForPorduct(2);
+//        ps.getAvailableSizeForPorduct(3);
+//        ps.getAvailableSizeForPorduct(4);
+        Product prd = ps.seacrhProduct("ca");
+        System.out.println("=======================");
+        System.out.println(prd.getId());
     }
 }

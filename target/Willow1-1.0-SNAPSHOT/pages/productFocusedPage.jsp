@@ -1,12 +1,16 @@
+<%@page import="Support.index"%>
+<%@page import="Model.Product"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Product | List</title>
+    <title>Product | 01</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/stylex.css">
+    <link rel="stylesheet" href="css/stylex.css">    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/stylex.css">
     <style>
       .dashBody{height:100vh;padding:1.4em 2.2em;}
       .dashLineOne{height:1px;width:100%;background: #666;}
@@ -20,24 +24,31 @@
       .dashMoptMiniTitleCrate{padding:5px 0;}
       .dashMoptMiniTitleSloth{font-size:16px;font-weight:300;letter-spacing:.05em;}
 
-      .dProdListBody{padding:0 1.6em;}
-      .dProdListTitleSloth{font-size:28px;font-weight:600;letter-spacing:.05em}
-      .dProdListMainContainer{height:calc(100% - 35px);overflow:auto;}
-      .dProdListMainContainer::-webkit-scrollbar {width: 1px;}
+      .dProdFocBody{padding:0 1.6em;}
+      .dProdFocTitleSloth{font-size:28px;font-weight:600;letter-spacing:.05em}
+      .dProdFocMainContainer{height:calc(100% - 50px);}
+      .dProdFocMainContainer::-webkit-scrollbar {width: 1px;}
 
       /* table */
-      .dProdListTable{border-spacing:0;}
-      .dProdListTable tr td{text-align: center;border:1px solid #000;border-top:none;border-left:none;padding:2px 0;}
-      .dProdListTable tr td:nth-child(1){border-left:1px solid #000;}
-      .dProdListTable tr:nth-child(1) td{border-top:1px solid #000;font-weight:600;}
-      .dProdListTable tr td:nth-child(2){text-align-last: left;padding-left:8px;}
-      /* .dProdListTdTitle{} */
+      .dProdFocTableCrate{overflow:auto;}
+      .dProdFocTable{border-spacing:0;}
+      .dProdFocTable tr td{text-align: center;border:1px solid #000;border-top:none;border-left:none;padding:2px 0;}
+      .dProdFocTable tr td:nth-child(1){border-left:1px solid #000;}
+      .dProdFocTable tr:nth-child(1) td{border-top:1px solid #000;font-weight:600;}
+      .dProdFocTable tr td:nth-child(2){text-align-last: left;padding-left:8px;}
+      /* .dProdFocTdTitle{} */
+
+      /* buttons */
+      .dProdFocSavebtn{font-family:var(--ff5);padding:6px 20px;background:#5d93ec;margin-right:10px;transition:.3s;
+        border-radius:2px;color:#fff;font-style: 16px;letter-spacing:.05em;font-weight: 300;border:none;cursor: pointer;}
+      .dProdFocSavebtn:hover{background:#3B71CA;}
+      .dProdFocSavedMsgSloth{font-size: 15px;}
     </style>
   </head>
   <body>
     <div class="dashBody bor">
       <div class="inrDashBody bor hw100 flex">
-        <div class="dashMainOptionsCrate flex fdc out rel">
+        <div class="dashMainOptionsCrate out rel">
           <a href="user?page=index" class="dashMoptTitleSloth ff1 bor pb15 totext">
             WILLOW
           </a>
@@ -117,57 +128,76 @@
           <!-- ---------------------------------------- SPAN ---------------------------------------- -->
         </div>
         <div class="dashMainContainer out">
-          <div class="dashConatinerCrate hw100 bor" data-for="list">
-            <div class="dProdListBody w100 out">
-              <div class="inrdProdListBody hw100 out">
-                <div class="dProdListTitleSloth pb15 ff1 out">
-                  PRODUCT > List
+          <div class="dashConatinerCrate hw100 bor" data-for="detail">
+            <!-- for product detail -->
+            <div class="dProdFocBody hw100 out">
+              <div class="inrdProdFocBody hw100 out">
+                <div class="dProdFocTitleSloth pb15 ff1 out">
+                  PRODUCT > Foused List
                 </div>
-                <div class="dProdListMainContainer bor">
-                  <table class="dProdListTable bor w100">
-                    <tr>
-                      <td class="dProdListTdTitle">Id</td>
-                      <td class="dProdListTdTitle">Name</td>
-                      <td class="dProdListTdTitle">Brand</td>
-                      <td class="dProdListTdTitle">Price</td>
-                      <td class="dProdListTdTitle">Discount</td>
-                      <td class="dProdListTdTitle">Avilable size</td>
-                      <td class="dProdListTdTitle">Total count</td>
-                      <td class="dProdListTdTitle">Visibility</td>
-                      <td class="dProdListTdTitle">Details</td>
-                    </tr>
-                    <c:forEach items="${productlist}" var="prlist">
-                    <tr>
-                      <td>
-                        ${prlist.id}
-                      </td>
-                      <td>
-                        ${prlist.name}
-                      </td>
-                      <td>
-                        ${prlist.brand}
-                      </td>
-                      <td>
-                        ${prlist.price}
-                      </td>
-                      <td>
-                        ${prlist.discount}%
-                      </td>
-                      <td>
-                        ${prlist.avilablesize}
-                      </td>
-                      <td>
-                        ${prlist.totalcount}
-                      </td>
-                      <td>
-                        ${prlist.visibility}
-                      </td>
-                      <td><a href="user?page=dashboard&product=productdetails&id=${prlist.id}" class="dProdListDetailLink txtx">
-                        Details
-                      </a></td>
-                    </tr>
-                    </c:forEach>
-                  </table>
+                <div class="dProdFocMainContainer flex bor">
+                  <form action="" class="flex fdc jcsb hw100 bor" method="post">
+                    <div class="dProdFocTableCrate bor">
+                      <table class="dProdFocTable bor w100">
+                        <tr>
+                          <td class="dProdFocTdTitle">Id</td>
+                          <td class="dProdFocTdTitle">Name</td>
+                          <td class="dProdFocTdTitle">Brand</td>
+                          <td class="dProdFocTdTitle">Price</td>
+                          <td class="dProdFocTdTitle">Avilable size</td>
+                          <td class="dProdFocTdTitle">Total count</td>
+                          <td class="dProdFocTdTitle">Feature</td>
+                          <td class="dProdFocTdTitle">Popular</td>
+                          <td class="dProdFocTdTitle">New</td>
+                          <td class="dProdFocTdTitle">Edit</td>
+                        </tr>
+
+                        <!-- FOR EACH  -->
+                        <c:forEach items="${popularPList}" var="prlist">
+                        <tr>
+                          <td>
+                            ${prlist.id}
+                          </td>
+                          <td>
+                            ${prlist.name}
+                          </td>
+                          <td>
+                            ${prlist.brand}
+                          </td>
+                          <td>
+                            ${prlist.price}
+                          </td>
+                          <td>
+                            ${prlist.avilablesize}
+                          </td>
+                          <td>
+                            ${prlist.totalcount}
+                          </td>
+                          <td>
+                            ${prlist.focused1}
+                          </td>
+                          <td>
+                            ${prlist.focused2}
+                          </td>
+                          <td>
+                            ${prlist.focused3}
+                          </td>
+                          <td>
+                            <a href="user?page=dashboard&product=productedit&id=${prlist.id}" class="txtx bor" data-btn="1">Edit</a>
+                          </td>
+                        </tr>
+                        </c:forEach>
+                        <!-- FOR EACH  -->
+
+                      </table>
+                    </div>
+                    <div class="dProdFocButtonCrate flex pt15 bor">
+                      <input type="submit" class="dProdFocSavebtn" value="Save">
+                      <div class="dProdFocSavedMsgSloth flexmid ff5 bor none">
+                        Saved sucessfully
+                      </div>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>

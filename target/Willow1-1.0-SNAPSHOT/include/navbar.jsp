@@ -53,7 +53,7 @@ String toDisplaySignIn = new index().signedInOrOut(!toDisplayLoginsBool);
       <div class="nav_inrbody bor flex jcsb">
         <div class="nav_left bor">
           <a href="user?page=index" class="nav_title totext">
-            WILLOW x<%=toDisplayLoginsBool%>y
+            WILLOW
           </a>
         </div>
         <div class="nav_mid bor fg1 flex jcc">
@@ -62,7 +62,9 @@ String toDisplaySignIn = new index().signedInOrOut(!toDisplayLoginsBool);
               <img src="icons/search.png" alt="" class="nav_logo nav_Searchlogo_search bor">
             </div>
             <div class="nav_searchbox_mid bor fg1">
-              <input type="text" class="nav_input_Search bor hw100" placeholder="Search for products">
+                <form class="hw100" action="user?page=search" method="post">
+                    <input type="text" class="nav_input_Search bor hw100" placeholder="Search for products" name="search">
+                </form>
             </div>
             <div class="nav_searchbox_right bor flexmid">
               <img src="icons/times.png" alt="" class="nav_logo nav_Searchlogo_times bor">

@@ -1,7 +1,8 @@
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@page import="Model.Product"%>
 <%@page import="Support.index"%>
 <%@page import="Model.Productx"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%--<c:forEach items="${productlist}" var="pl">--%>
 <!DOCTYPE html>
 <html>
@@ -117,7 +118,7 @@
             <div class="prod_body_inr bor">
                 <div class="prod_main_title_crate flex jcsb aic bor">
                     <div class="prod_main_title bor">
-                        POPULAR PRODUCT
+                        FEATURE PRODUCT
                     </div>
                     <div class="prod_main_title_more bor flex rel cup">
                         View More
@@ -128,45 +129,47 @@
                     <div class="inr_prod_list_box bor flex ">
 
                         <!-- FOR EACH SLOTH -->
-                        <c:forEach items="${popularpl}" var="pl">
+                        <c:forEach items="${popularPList}" var="pplist">
                         <%
-                        Productx p =(Productx) pageContext.getAttribute("pl");
-                        int blackStartCount = p.getRpoint();
-                        int whiteStartCount = 5 - p.getRpoint();
-                        double discountedPrice = new index().getPercentOf(p.getDiscount(),p.getPrice());
-                        String toStrikeStr = new index().toStrikeByDiscount(p.getDiscount());
-                        String toDisplayStr = new index().toDisplayByDiscount(p.getDiscount());
-                        String toDisplayNewStr = new index().isProductNewByDate(p.getDate());
+//                            Product p =(Product) pageContext.getAttribute("pplist");
+//    //                        int blackStartCount = p.getRpoint();
+//    //                        int whiteStartCount = 5 - p.getRpoint();
+//                            int blackStartCount = 5;
+//                            int whiteStartCount = 3;
+//                            double discountedPrice = new index().getPercentOf(p.getDiscount(),p.getPrice());
+//                            String toStrikeStr = new index().toStrikeByDiscount(p.getDiscount());
+//                            String toDisplayStr = new index().toDisplayByDiscount(p.getDiscount());
+//                            String toDisplayNewStr = new index().isProductNewByDate(p.getReleasedate());
                         %>
                             <div class="prod_sloth bor br3">
                                 <div class="inr_prod_sloth bor flex fdc">
                                     <div class="prod_image_sloth borx2 br3">
-                                        <img src=${pl.path} alt="" class="prod_img_img w100">
+                                        <img src="${pplist.image}" alt="" class="prod_img_img w100">
                                     </div>
-                                    <div class="prod_newitem_sloth prod_ff5 bor <%=toDisplayNewStr%>">New!</div>
+                                    <div class="prod_newitem_sloth prod_ff5 bor ">New!</div>
                                     <div class="prod_name_sloth prod_ff5 bor">
-                                        ${pl.name}
+                                        ${pplist.name}
                                     </div>
                                     
-                                    <div class="prod_discount_price_sloth prod_ff5 bor <%=toDisplayStr%>">
-                                        RS <%=discountedPrice%> (${pl.discount}% off)
+                                    <div class="prod_discount_price_sloth prod_ff5 bor">
+                                        RS ${pplist.price}(${fplist.discount}% off)
                                     </div>
                                     
-                                    <div class="prod_price_sloth prod_ff5 bor <%=toStrikeStr%>">
-                                        RS ${pl.price}
+                                    <div class="prod_price_sloth prod_ff5 bor">
+                                        RS ${pplist.price}
                                     </div>
                                     <div class="prod_review_crate prod_ff5 bor flex">
                                         <div class="prod_review_start_crate flex aic pr10 bor">
                                             <!-- LOOPING BLACK STAR -->
-                                            <%while(blackStartCount>0){%>
+                                            
                                             <img src="icons/start.png" alt="" class="prod_review_start_icon w100">
-                                            <%blackStartCount--;}while(whiteStartCount>0){%>
+                                            
                                             <!-- LOOPING WHITE STAR -->
                                             <img src="icons/start-stroke.png" alt="" class="prod_review_start_icon w100">
-                                            <%whiteStartCount--;}%>
+                                            
                                         </div>
                                         <div class="prod review_count_sloth prod_ff5">
-                                            (${pl.rcount})
+                                            (23)
                                         </div>
                                     </div>
                                 </div>
@@ -185,3 +188,4 @@
         </script>
     </body>
 </html>
+                         

@@ -14,7 +14,7 @@ if(plcheck==null){response.sendRedirect("user?page=index");}
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/stylex.css">
     <style>
-      .mainbody{height:1000vh;}
+      .mainbody{height:auto;}
       .nav_body{height:auto;}
       .nav_body_desktop{z-index:3;}
 

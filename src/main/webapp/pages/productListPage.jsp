@@ -54,12 +54,6 @@
           </div>
           <div class="dashMoptMiniTitleCrate flex aic out">
             <img src="icons/home.png" alt="" class="dashMoptMiniTitleIcon ml20 mr10 out">
-            <a href="user?page=dashboard&product=productedit" class="dashMoptMiniTitleSloth pt3 out totext">
-              Edit
-            </a>
-          </div>
-          <div class="dashMoptMiniTitleCrate flex aic out">
-            <img src="icons/home.png" alt="" class="dashMoptMiniTitleIcon ml20 mr10 out">
             <a href="user?page=dashboard&product=productlist" class="dashMoptMiniTitleSloth pt3 out totext">
               List
             </a>
@@ -72,8 +66,8 @@
           </div>
           <div class="dashMoptMiniTitleCrate flex aic out">
             <img src="icons/home.png" alt="" class="dashMoptMiniTitleIcon ml20 mr10 out">
-            <a href="#" class="dashMoptMiniTitleSloth pt3 out totext">
-              Order, Sold
+            <a href="user?page=order" class="dashMoptMiniTitleSloth pt3 out totext">
+              Order
             </a>
           </div>
           <!-- ---------------------------------------- SPAN ---------------------------------------- -->
@@ -85,9 +79,9 @@
             </div>
           </div>
           <div class="dashMoptMiniTitleCrate flex aic out">
-            <img src="../icons/home.png" alt="" class="dashMoptMiniTitleIcon ml20 mr10 out">
-            <a href="#" class="dashMoptMiniTitleSloth pt3 out totext">
-              Details
+            <img src="icons/home.png" alt="" class="dashMoptMiniTitleIcon ml20 mr10 out">
+            <a href="user?page=userlist" class="dashMoptMiniTitleSloth pt3 out totext">
+              List
             </a>
           </div>
           <!-- ---------------------------------------- SPAN ---------------------------------------- -->
@@ -99,9 +93,9 @@
             </div>
           </div>
           <div class="dashMoptMiniTitleCrate flex aic out">
-            <img src="../icons/home.png" alt="" class="dashMoptMiniTitleIcon ml20 mr10 out">
-            <a href="#" class="dashMoptMiniTitleSloth pt3 out totext">
-              Details
+            <img src="icons/home.png" alt="" class="dashMoptMiniTitleIcon ml20 mr10 out">
+            <a href="user?page=saleslist" class="dashMoptMiniTitleSloth pt3 out totext">
+              List
             </a>
           </div>
           <!-- ---------------------------------------- SPAN ---------------------------------------- -->
@@ -113,8 +107,8 @@
             </div>
           </div>
           <div class="dashMoptMiniTitleCrate flex aic out">
-            <img src="../icons/home.png" alt="" class="dashMoptMiniTitleIcon ml20 mr10 out">
-            <a href="#" class="dashMoptMiniTitleSloth pt3 out totext">
+            <img src="icons/home.png" alt="" class="dashMoptMiniTitleIcon ml20 mr10 out">
+            <a href="user?page=signout" class="dashMoptMiniTitleSloth pt3 out totext">
               Log Out
             </a>
           </div>
@@ -122,9 +116,9 @@
           <div class="dashLineOne mt10 mb15 none"></div>
           <!-- ---------------------------------------- SPAN ---------------------------------------- -->
         </div>
-        <div class="dashMainContainer outx3">
-          <div class="dashConatinerCrate hw100 borr" data-for="list">
-            <div class="dProdListBody w100 outx2">
+        <div class="dashMainContainer out">
+          <div class="dashConatinerCrate hw100 bor" data-for="list">
+            <div class="dProdListBody w100 out">
               <div class="inrdProdListBody hw100 out">
                 <div class="dProdListTitleSloth pb15 ff1 out">
                   PRODUCT > List
